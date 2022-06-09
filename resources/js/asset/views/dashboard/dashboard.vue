@@ -21,7 +21,7 @@
               <li><router-link to="{{asset('ddashboard/user')}}" ><Icon type="ios-speedometer"  /> Tài khoản</router-link></li> -->
               <li><router-link to="index">Overview</router-link></li>
               <li><router-link to="user" >Tài khoản</router-link></li> 
-              <li><router-link to="code" >Mã đăng ký</router-link></li>  
+              <li><router-link to="deader" >V Reader</router-link></li>  
 
             </ul>
           </div> 

@@ -27,10 +27,10 @@ const routes = [
         meta: 'User'
     },
     {
-        path: dashboardapp + '/code',
+        path: dashboardapp + '/reader',
         component: () =>
-            import ('./asset/views/dashboard/code/index.vue'),
-        meta: 'Code'
+            import ('./asset/views/dashboard/reader/index.vue'),
+        meta: 'reader'
     }
 ]
 
