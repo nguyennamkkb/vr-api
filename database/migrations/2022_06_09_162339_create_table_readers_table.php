@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableReaderTable extends Migration
+class CreateTableReadersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTableReaderTable extends Migration
      */
     public function up()
     {
-        Schema::create('reader', function (Blueprint $table) {
+        Schema::create('readers', function (Blueprint $table) {
             $table->id();
             $table->string('code',32);
             $table->string('name',255);
@@ -31,6 +31,6 @@ class CreateTableReaderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reader');
+        Schema::dropIfExists('readers');
     }
 }

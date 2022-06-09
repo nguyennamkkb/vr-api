@@ -14,6 +14,15 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Interfaces\CodeInterface',
             'App\Repositories\CodeRepository'
+
+         
         );
+        $this->app->bind(
+           
+
+            'App\Interfaces\ReaderInterface',
+            'App\Repositories\ReaderRepository'
+        );
+        
     }
 }

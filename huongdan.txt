@@ -1,0 +1,13 @@
+1. Tạo file .env
+2. Tạo database
+3. cài gói npm:
+npm install
+4. Cai goi composer:
+composer install
+5. Tao database
+php artisan make:migration create_users_table --create=users
+6. Them truong vao bang da co
+php artisan make:migration add_votes_to_users_table --table=users
+
+II Quy trinh tạo API
+1. 
