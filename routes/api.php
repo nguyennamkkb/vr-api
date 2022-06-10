@@ -20,12 +20,6 @@ use App\Http\Controllers\API\ReaderController;
 // });
 
 //codeController
-Route::get('codes',[ CodeController::class, 'index']);// lay thong toan bo thong tin
-Route::post('codes',[ CodeController::class, 'store']); // them moi thong tin
-Route::get('codes/{id}',[ CodeController::class, 'show']);// lay thong tin cuar 1 ma
-Route::put('codes/{id}',[ CodeController::class, 'update']); // sua thong tin
-Route::delete('codes/{id}',[ CodeController::class, 'destroy']);// xoa thong tin
-
 
 Route::get('readers',[ ReaderController::class, 'index']);// lay thong toan bo thong tin
 Route::post('readers',[ ReaderController::class, 'store']); // them moi thong tin
