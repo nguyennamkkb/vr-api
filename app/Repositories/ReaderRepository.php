@@ -49,7 +49,10 @@ class ReaderRepository implements ReaderInterface
             // Check the Reader 
             if($id && !$reader) return $this->error("No Reader with ID $id", 404);
 
-            $reader->Reader = $request->Reader;
+            $reader->code = $request->code;
+            $reader->name = $request->name;
+            $reader->idUnit = $request->idUnit;
+            $reader->address = $request->address;
             // Remove a whitespace and make to lowercase
            
             

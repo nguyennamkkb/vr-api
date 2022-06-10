@@ -17,3 +17,4 @@ php artisan make:request UnitRequest
 
 3. Tạo Controller API
 php artisan make:Controller Api/UnitController --api
+4. Tạo UserRepostitory.php, place the file in your app/Repositories folder.

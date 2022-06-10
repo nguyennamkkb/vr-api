@@ -41,9 +41,9 @@ class ReaderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReaderRequest $request, $id)
+    public function store(ReaderRequest $request)
     {
-        return $this->ReaderInterface->requestReader($request, $id);
+        return $this->ReaderInterface->requestReader($request);
     }
 
     /**
