@@ -6,19 +6,54 @@ use App\Http\Requests\ReaderRequest;
 use App\Interfaces\ReaderInterface;
 use App\Traits\ResponseAPI;
 use App\Models\Reader;
+use App\Http\Resources\ReadersResource;
+use App\Http\Resources\ReaderCollection;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Eloquent\RepositoryEloquent;
 
-class ReaderRepository implements ReaderInterface
+class ReaderRepository extends RepositoryEloquent implements ReaderInterface
 {
     // Use ResponseAPI Trait in this repository
     use ResponseAPI;
+    public function model()
+    {
+        return Customer::class;
+    }
+    public function findBy($code, $name, $idUnit, $address, $status)
+    {
+        try {
+            $query = $this->model->newQuery();
+            if (!empty($code)) {
 
+                $query = $this->model->where('code', 'like', "%$code%");
+            }
+            if (!empty($name)) {
+                $query = $this->model->where('name', 'like', "%$name%");
+            }
+            if (!empty($idUnit)) {
+                $query = $this->model->where('idUnit', $idUnit);
+            }
+            if (!empty($address)) {
+                $query = $this->model->where('address', 'like', "%$address%");
+            }
+            if (!empty($status)) {
+                $query = $this->model->where('customerType_id', $status);
+            }
+
+            $query = $query->orderBy('name', 'desc');
+
+ 
+            return $this->success("All Readers", new ReaderCollection($query));
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), $e->getCode());
+        }
+    }
     public function getAllReaders()
     {
         try {
-            $reader = Reader::all();
-            return $this->success("All Readers", $reader);
-        } catch(\Exception $e) {
+            $reader = Reader::paginate();
+            return $this->success("All Readers", new ReaderCollection($reader));
+        } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
@@ -27,12 +62,12 @@ class ReaderRepository implements ReaderInterface
     {
         try {
             $reader = Reader::find($id);
-            
+
             // Check the Reader
-            if(!$reader) return $this->error("No Reader with ID $id", 404);
+            if (!$reader) return $this->error("No Reader with ID $id", 404);
 
             return $this->success("Reader Detail", $reader);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
     }
@@ -47,15 +82,15 @@ class ReaderRepository implements ReaderInterface
             $reader = $id ? Reader::find($id) : new Reader;
 
             // Check the Reader 
-            if($id && !$reader) return $this->error("No Reader with ID $id", 404);
+            if ($id && !$reader) return $this->error("No Reader with ID $id", 404);
 
             $reader->code = $request->code;
             $reader->name = $request->name;
             $reader->idUnit = $request->idUnit;
             $reader->address = $request->address;
             // Remove a whitespace and make to lowercase
-           
-            
+
+
 
             $reader->save();
 
@@ -63,8 +98,10 @@ class ReaderRepository implements ReaderInterface
             return $this->success(
                 $id ? "Reader updated"
                     : "Reader created",
-                $reader, $id ? 200 : 201);
-        } catch(\Exception $e) {
+                $reader,
+                $id ? 200 : 201
+            );
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->error($e->getMessage(), $e->getCode());
         }
@@ -77,14 +114,14 @@ class ReaderRepository implements ReaderInterface
             $reader = Reader::find($id);
 
             // Check the Reader
-            if(!$reader) return $this->error("No Reader with ID $id", 404);
+            if (!$reader) return $this->error("No Reader with ID $id", 404);
 
             // Delete the Reader
             $reader->delete();
 
             DB::commit();
             return $this->success("Reader deleted", $reader);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->error($e->getMessage(), $e->getCode());
         }

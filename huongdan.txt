@@ -11,10 +11,23 @@ php artisan make:migration add_votes_to_users_table --table=users
 
 II Quy trinh tạo API
 1. Tạo request
-php artisan make:request UnitRequest
+php artisan make:request BiometricRequest
 
+Tạo Models
+php artisan make:model Biometric	
 2. Tạo UserInterface.php, place the file in your app/Interfaces folder. 
 
 3. Tạo Controller API
-php artisan make:Controller Api/UnitController --api
+php artisan make:Controller Api/BiometricController --api
 4. Tạo UserRepostitory.php, place the file in your app/Repositories folder.
+
+5 Tao API Resources trả về giá trị truy vấn liên kết các bảng
+php artisan make:resource ReadersResource
+php artisan make:resource ReaderCollection
+
+
+
+
+
+
+

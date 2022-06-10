@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CodeController;
 use App\Http\Controllers\API\ReaderController;
 use App\Http\Controllers\API\UnitController;
+use App\Http\Controllers\API\BiometricController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,4 +35,11 @@ Route::post('units',[ UnitController::class, 'store']); // them moi thong tin
 Route::get('units/{id}',[ UnitController::class, 'show']);// lay thong tin cuar 1 ma
 Route::put('units/{id}',[ UnitController::class, 'update']); // sua thong tin
 Route::delete('units/{id}',[ UnitController::class, 'destroy']);// xoa thong tin
+
+Route::get('biometrics',[ BiometricController::class, 'index']);// lay thong toan bo thong tin
+Route::post('biometrics',[ BiometricController::class, 'store']); // them moi thong tin
+Route::get('biometrics/{id}',[ BiometricController::class, 'show']);// lay thong tin cuar 1 ma
+Route::put('biometrics/{id}',[ BiometricController::class, 'update']); // sua thong tin
+Route::delete('biometrics/{id}',[ BiometricController::class, 'destroy']);// xoa thong tin
+
 
