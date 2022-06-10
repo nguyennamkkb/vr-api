@@ -10,6 +10,7 @@ use App\Http\Resources\ReadersResource;
 use App\Http\Resources\ReaderCollection;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Eloquent\RepositoryEloquent;
+use destroy;
 
 class ReaderRepository extends RepositoryEloquent implements ReaderInterface
 {
@@ -17,9 +18,9 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
     use ResponseAPI;
     public function model()
     {
-        return Customer::class;
+        return Reader::class;
     }
-    public function findBy($code, $name, $idUnit, $address, $status)
+    public function findBy($code, $name, $idUnit, $address, $status, $limit)
     {
         try {
             $query = $this->model->newQuery();
@@ -37,13 +38,11 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
                 $query = $this->model->where('address', 'like', "%$address%");
             }
             if (!empty($status)) {
-                $query = $this->model->where('customerType_id', $status);
+                $query = $this->model->where('status', $status);
             }
 
             $query = $query->orderBy('name', 'desc');
-
- 
-            return $this->success("All Readers", new ReaderCollection($query));
+            return $this->success("All Readers", $query->paginate($limit));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }

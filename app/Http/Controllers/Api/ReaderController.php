@@ -30,7 +30,7 @@ class ReaderController extends Controller
         $address = $request->address;
         $status = $request->status;
         $limit = $request->limit;
-        return$this->categoryRepository->findBy($code,$name,$idUnit,$address,$status)->paginate($limit);
+        return $this->ReaderInterface->findBy($code,$name,$idUnit,$address,$status,$limit);
         // return categoryResource::collection($list);
 
         // return $this->ReaderInterface->findBy();
