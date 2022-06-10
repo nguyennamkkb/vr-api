@@ -1,0 +1,11 @@
+
+INSERT INTO `readers` (`id`, `code`, `name`, `idUnit`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(1, '0000000000017C0A612293C420964037', 'VM HN Cửa 1', 4, 'Tầng 11, Số 4, Liễu Giai, Ba Đình, Hà Nội, Việt Nam', 0, '2022-06-10 04:10:12', '2022-06-10 04:10:12'),
+(2, '0000000000017C0A5F2393C420964037', 'VM HN Cửa 2', 4, 'Tầng 11, Số 4, Liễu Giai, Ba Đình, Hà Nội, Việt Nam', 0, '2022-06-10 04:11:34', '2022-06-10 04:11:34'),
+(3, '0000000000017C0A5907952A4C360610', 'VM HN Cửa 3', 4, 'Tầng 11, Số 4, Liễu Giai, Ba Đình, Hà Nội, Việt Nam', 0, '2022-06-10 04:11:47', '2022-06-10 04:11:47');
+
+
+INSERT INTO `units` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(4, 'ViMASS Hà Nội', 0, '2022-06-10 04:04:20', '2022-06-10 04:04:20'),
+(5, 'ViMASS Hồ Chí Minh', 0, '2022-06-10 04:04:37', '2022-06-10 04:04:37'),
+(6, 'ViMASS Đà Nẵng', 0, '2022-06-10 04:04:44', '2022-06-10 04:04:44');
