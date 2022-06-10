@@ -10,4 +10,10 @@ php artisan make:migration create_users_table --create=users
 php artisan make:migration add_votes_to_users_table --table=users
 
 II Quy trinh tạo API
-1. Tạo requestgit
+1. Tạo request
+php artisan make:request UnitRequest
+
+2. Tạo UserInterface.php, place the file in your app/Interfaces folder. 
+
+3. Tạo Controller API
+php artisan make:Controller Api/UnitController --api

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CodeController;
 use App\Http\Controllers\API\ReaderController;
+use App\Http\Controllers\API\UnitController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,4 +28,10 @@ Route::get('readers/{id}',[ ReaderController::class, 'show']);// lay thong tin c
 Route::put('readers/{id}',[ ReaderController::class, 'update']); // sua thong tin
 Route::delete('readers/{id}',[ ReaderController::class, 'destroy']);// xoa thong tin
 
+
+Route::get('units',[ UnitController::class, 'index']);// lay thong toan bo thong tin
+Route::post('units',[ UnitController::class, 'store']); // them moi thong tin
+Route::get('units/{id}',[ UnitController::class, 'show']);// lay thong tin cuar 1 ma
+Route::put('units/{id}',[ UnitController::class, 'update']); // sua thong tin
+Route::delete('units/{id}',[ UnitController::class, 'destroy']);// xoa thong tin
 
