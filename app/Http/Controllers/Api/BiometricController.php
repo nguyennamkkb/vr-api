@@ -20,9 +20,13 @@ class BiometricController extends Controller
     {
         $this->biometricInterface = $biometricInterface;
     }
-    public function index()
+    public function index(Request $request)
     {
-        return $this->biometricInterface->getAllBiometrics();
+        $data = $request->data;
+        $status = $request->status;
+        $limit = $request->limit;
+        return $this->biometricInterface->findBy($data,$status,$limit);
+        // return $this->biometricInterface->getAllBiometrics();
     }
 
     /**

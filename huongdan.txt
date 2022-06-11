@@ -22,8 +22,8 @@ php artisan make:Controller Api/BiometricController --api
 4. Tạo UserRepostitory.php, place the file in your app/Repositories folder.
 
 5 Tao API Resources trả về giá trị truy vấn liên kết các bảng
-php artisan make:resource ReadersResource
-php artisan make:resource ReaderCollection
+php artisan make:resource Biometric/BiometricResource
+php artisan make:resource Biometric/BiometricCollection
 
 
 

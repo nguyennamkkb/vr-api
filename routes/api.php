@@ -30,7 +30,7 @@ Route::put('readers/{id}',[ ReaderController::class, 'update']); // sua thong ti
 Route::delete('readers/{id}',[ ReaderController::class, 'destroy']);// xoa thong tin
 
 
-Route::get('units',[ UnitController::class, 'index']);// lay thong toan bo thong tin
+Route::get('units',[ UnitController::class, 'index']);// lay thong toan bo thong tin        
 Route::post('units',[ UnitController::class, 'store']); // them moi thong tin
 Route::get('units/{id}',[ UnitController::class, 'show']);// lay thong tin cuar 1 ma
 Route::put('units/{id}',[ UnitController::class, 'update']); // sua thong tin

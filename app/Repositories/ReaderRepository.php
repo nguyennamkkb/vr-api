@@ -26,19 +26,19 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
             $query = $this->model->newQuery();
             if (!empty($code)) {
 
-                $query = $this->model->where('code', 'like', "%$code%");
+                $query = $this->where('code', 'like', "%$code%");
             }
             if (!empty($name)) {
-                $query = $this->model->where('name', 'like', "%$name%");
+                $query = $this->where('name', 'like', "%$name%");
             }
             if (!empty($idUnit)) {
-                $query = $this->model->where('idUnit', $idUnit);
+                $query = $this->where('idUnit', $idUnit);
             }
             if (!empty($address)) {
-                $query = $this->model->where('address', 'like', "%$address%");
+                $query = $this->where('address', 'like', "%$address%");
             }
             if (!empty($status)) {
-                $query = $this->model->where('status', $status);
+                $query = $this->where('status', $status);
             }
 
             $query = $query->orderBy('name', 'desc');
@@ -88,9 +88,6 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
             $reader->idUnit = $request->idUnit;
             $reader->address = $request->address;
             // Remove a whitespace and make to lowercase
-
-
-
             $reader->save();
 
             DB::commit();
