@@ -23,5 +23,5 @@ class ReadersResource extends JsonResource
             'address' => $this->address,
         ];
     }
+
 }
-// $this->paginate()

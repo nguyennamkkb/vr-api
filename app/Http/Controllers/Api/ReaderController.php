@@ -24,6 +24,7 @@ class ReaderController extends Controller
     }
     public function index(Request $request)
     {
+       
         $code = $request->code;
         $name = $request->name;
         $idUnit = $request->idUnit;

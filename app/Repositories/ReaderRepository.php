@@ -42,7 +42,7 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
             }
 
             $query = $query->orderBy('name', 'desc');
-            return $this->success("All Readers", $query->paginate($limit));
+            return $this->success("All Readers", new ReaderCollection($query->paginate($limit)));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }

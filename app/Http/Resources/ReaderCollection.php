@@ -25,7 +25,7 @@ class ReaderCollection extends ResourceCollection
                 'current_page' => $this->currentPage(),
                 'total_pages' => $this->lastPage()
             ]
-            
+
         ];
     }
 }
