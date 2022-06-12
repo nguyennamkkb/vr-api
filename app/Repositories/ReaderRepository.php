@@ -22,27 +22,29 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
     }
     public function findBy($code, $name, $idUnit, $address, $status, $limit)
     {
+        
         try {
             $query = $this->model->newQuery();
             if (!empty($code)) {
-
-                $query = $this->model->where('code', 'like', "%$code%");
+                $query = $this->where('code', 'like', "%$code%");
             }
             if (!empty($name)) {
-                $query = $this->model->where('name', 'like', "%$name%");
+                $query =$this->where('name', 'like', "%$name%");
             }
             if (!empty($idUnit)) {
-                $query = $this->model->where('idUnit', $idUnit);
+                $query = $this->where('idUnit', $idUnit);
             }
             if (!empty($address)) {
-                $query = $this->model->where('address', 'like', "%$address%");
+                $query =$this->where('address', 'like', "%$address%");
             }
             if (!empty($status)) {
-                $query = $this->model->where('status', $status);
+                $query =$this->where('status', $status);
             }
 
             $query = $query->orderBy('name', 'desc');
-            return $this->success("All Readers", $query->paginate($limit));
+            // dd( $query->toSql() );
+            // return $this->success("All Readers", $query->paginate($limit));
+            return $this->success("All Readers", ReadersResource::collection($query->paginate($limit)));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
         }
