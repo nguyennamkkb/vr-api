@@ -17,7 +17,8 @@ class CreateTableBiometricsTable extends Migration
             $table->id();
             $table->integer('idTypeBiometric',4);
             $table->text('data',2100);
-            $table->integer('fpIndex',4)->nullable()->default(-1);
+            $table->string('fpIndex',255)->nullable()->default(-1);
+            $table->string('note',100)->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

@@ -70,16 +70,10 @@ class BiometricRepository  extends RepositoryEloquent implements BiometricInterf
             // Check the Biometric 
             if($id && !$biometrics) return $this->error("No Biometric with ID $id", 404);
 
+            $biometrics->idTypeBiometric = $request->idTypeBiometric;
             $biometrics->data = $request->data;
+            $biometrics->note = $request->note;
             $biometrics->fpIndex = $request->fpIndex;
-            // Remove a whitespace and make to lowercase
-           
-            
-            // I dont wanna to update the password, 
-            // Password must be fill only when creating a new Biometric.
-            // if(!$id) $biometrics->password = \Hash::make($request->password);
-
-            // Save the Biometric
             $biometrics->save();
 
             DB::commit();

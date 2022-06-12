@@ -16,7 +16,10 @@ class BiometricResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'idTypeBiometric' => $this->idTypeBiometric,
             'data' => $this->data,
+            'fpIndex' => $this->fpIndex,
+            'note' => $this->note,
         ];
     }
 }

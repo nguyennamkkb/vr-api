@@ -35,7 +35,7 @@ class UserBiometricRepository extends RepositoryEloquent implements UserBiometri
                 $query = $this->where('status', $status);
             }
 
-            $query = $query->orderBy('name', 'desc');
+            $query = $query->orderBy('id', 'desc');
             return $this->success("All UserBiometrics", new UserBiometricCollection($query->paginate($limit)));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
@@ -79,8 +79,6 @@ class UserBiometricRepository extends RepositoryEloquent implements UserBiometri
 
             $UserBiometric->iduser = $request->iduser;
             $UserBiometric->idbiometric = $request->idbiometric;
-
-            // Remove a whitespace and make to lowercase
             $UserBiometric->save();
 
             DB::commit();
