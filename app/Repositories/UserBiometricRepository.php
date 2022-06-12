@@ -20,22 +20,16 @@ class UserBiometricRepository extends RepositoryEloquent implements UserBiometri
     {
         return UserBiometric::class;
     }
-    public function findBy($iduser,$idtype,$idbiometric,$status, $limit)
+    public function findBy($iduser,$idbiometric,$status, $limit)
     {
         try {
             $query = $this->model->newQuery();
-            if (!empty($code)) {
+            if (!empty($iduser)) {
 
-                $query = $this->where('code', 'like', "%$code%");
+                $query = $this->where('iduser',$iduser);
             }
-            if (!empty($name)) {
-                $query = $this->where('name', 'like', "%$name%");
-            }
-            if (!empty($idUnit)) {
-                $query = $this->where('idUnit', $idUnit);
-            }
-            if (!empty($address)) {
-                $query = $this->where('address', 'like', "%$address%");
+            if (!empty($idbiometric)) {
+                $query = $this->where('idbiometric',$idbiometric);
             }
             if (!empty($status)) {
                 $query = $this->where('status', $status);
@@ -84,7 +78,6 @@ class UserBiometricRepository extends RepositoryEloquent implements UserBiometri
             if ($id && !$UserBiometric) return $this->error("No UserBiometric with ID $id", 404);
 
             $UserBiometric->iduser = $request->iduser;
-            $UserBiometric->idtype = $request->idtype;
             $UserBiometric->idbiometric = $request->idbiometric;
 
             // Remove a whitespace and make to lowercase

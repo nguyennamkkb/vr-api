@@ -45,5 +45,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\PassedTheGateInterface',
             'App\Repositories\PassedTheGateRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\ReaderUserInterface',
+            'App\Repositories\ReaderUserRepository'
+        );
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserInterface;
-use App\Models\Usern;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -30,6 +29,7 @@ class UserController extends Controller
         $phone = $request->phone;
         $status = $request->status;
         $limit = $request->limit;
+    
         return $this->UserInterface->findBy($name,$vid,$fid,$phone,$status, $limit);
     }
 

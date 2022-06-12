@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserInterface;
 use App\Traits\ResponseAPI;
-use App\Models\Usern;
+use App\Models\User;
 use App\Http\Resources\User\UserCollection;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Eloquent\RepositoryEloquent;
@@ -17,30 +17,28 @@ class UserRepository extends RepositoryEloquent implements UserInterface
     use ResponseAPI;
     public function model()
     {
-        return Usern::class;
+        return User::class;
     }
     public function findBy($name,$vid,$fid,$phone,$status, $limit)
     {
         try {
             $query = $this->model->newQuery();
-            if (!empty($code)) {
 
-                $query = $this->where('code', 'like', "%$code%");
-            }
             if (!empty($name)) {
                 $query = $this->where('name', 'like', "%$name%");
             }
-            if (!empty($idUnit)) {
-                $query = $this->where('idUnit', $idUnit);
+            if (!empty($vid)) {
+                $query = $this->where('vid', 'like', "%$name%");
             }
-            if (!empty($address)) {
-                $query = $this->where('address', 'like', "%$address%");
+            if (!empty($fid)) {
+                $query = $this->where('fid', 'like', "%$fid%");
             }
             if (!empty($status)) {
                 $query = $this->where('status', $status);
             }
 
-            $query = $query->orderBy('name', 'desc');
+            $query = $query->orderBy('id', 'desc');
+        
             return $this->success("All Users", new UserCollection($query->paginate($limit)));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
@@ -49,7 +47,7 @@ class UserRepository extends RepositoryEloquent implements UserInterface
     public function getAllUsers()
     {
         try {
-            $User = Usern::paginate();
+            $User = User::paginate();
             return $this->success("All Users", new UserCollection($User));
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), $e->getCode());
@@ -59,7 +57,7 @@ class UserRepository extends RepositoryEloquent implements UserInterface
     public function getUserById($id)
     {
         try {
-            $User = Usern::find($id);
+            $User = User::find($id);
 
             // Check the User
             if (!$User) return $this->error("No User with ID $id", 404);
@@ -77,12 +75,12 @@ class UserRepository extends RepositoryEloquent implements UserInterface
             // If User exists when we find it
             // Then update the User
             // Else create the new one.
-            $User = $id ? Usern::find($id) : new Usern;
+            $User = $id ? User::find($id) : new User;
 
             // Check the User 
             if ($id && !$User) return $this->error("No User with ID $id", 404);
 
-            $User->code = $request->code;
+            $User->name = $request->name;
             $User->vid = $request->vid;
             $User->fid = $request->fid;
             $User->phone = $request->phone;
@@ -107,7 +105,7 @@ class UserRepository extends RepositoryEloquent implements UserInterface
     {
         DB::beginTransaction();
         try {
-            $User = Usern::find($id);
+            $User = User::find($id);
 
             // Check the User
             if (!$User) return $this->error("No User with ID $id", 404);

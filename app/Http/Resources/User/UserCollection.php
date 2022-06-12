@@ -3,7 +3,7 @@
 namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ReadersResource;
+use App\Http\Resources\User\UserResource;
 
 class UserCollection extends ResourceCollection
 {
@@ -16,7 +16,7 @@ class UserCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => ReadersResource::collection($this->collection),
+            'data' => UserResource::collection($this->collection),
             'meta' => [
                 'total' => $this->total(),
                 'count' => $this->count(),

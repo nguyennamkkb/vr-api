@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\UserBiometric;
+namespace App\Http\Resources\ReaderUser;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserBiometricResource extends JsonResource
+class ReaderUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class UserBiometricResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'idtype' => $this->idtype,
-            'idbiometric' => $this->idbiometric,
-            'name' => $this->name,
+            'idreader' => $this->idreader,
+            'iduser' => $this->iduser,
+
         ];
     }
 }

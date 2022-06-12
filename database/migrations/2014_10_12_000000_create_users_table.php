@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('vid');
-            $table->timestamp('fid')->nullable();
+            $table->string('fid')->nullable();
             $table->string('phone')->nullable();
             $table->integer('status')->default(0);
             $table->rememberToken();

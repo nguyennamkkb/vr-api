@@ -6,7 +6,7 @@ use App\Http\Requests\UserBiometricsRequest;
 
 interface UserBiometricInterface
 {
-    public function findBy($iduser,$idtype,$idbiometric,$status, $limit);
+    public function findBy($iduser,$idbiometric,$status, $limit);
     public function getAllUserBiometrics();
     public function getUserBiometricById($id);
     public function requestUserBiometric(UserBiometricsRequest $request, $id = null);
