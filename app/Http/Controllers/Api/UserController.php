@@ -1,38 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ReaderRequest;
-use App\Interfaces\ReaderInterface;
-use App\Models\Reader;
+use App\Http\Requests\UserRequest;
+use App\Interfaces\UserInterface;
+use App\Models\Usern;
 use Illuminate\Support\Facades\DB;
 
-
-class ReaderController extends Controller
+class UserController extends Controller
 {
-    protected $ReaderInterface;
+    protected $UserInterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(ReaderInterface $ReaderInterface)
+    public function __construct(UserInterface $UserInterface)
     {
-        $this->ReaderInterface = $ReaderInterface;
+        $this->UserInterface = $UserInterface;
     }
     public function index(Request $request)
     {
        
-        $code = $request->code;
+        $vid = $request->vid;
         $name = $request->name;
-        $idUnit = $request->idUnit;
-        $address = $request->address;
+        $fid = $request->fid;
+        $phone = $request->phone;
         $status = $request->status;
         $limit = $request->limit;
-        return $this->ReaderInterface->findBy($code,$name,$idUnit,$address,$status,$limit);
-      
+        return $this->UserInterface->findBy($name,$vid,$fid,$phone,$status, $limit);
     }
 
     /**
@@ -51,9 +49,9 @@ class ReaderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReaderRequest $request)
+    public function store(UserRequest $request)
     {
-        return $this->ReaderInterface->requestReader($request);
+        return $this->UserInterface->requestUser($request);
     }
 
     /**
@@ -65,7 +63,7 @@ class ReaderController extends Controller
     public function show($id)
     {
         
-        return $this->ReaderInterface->getReaderById($id);
+        return $this->UserInterface->getUserById($id);
     }
 
     /**
@@ -86,9 +84,9 @@ class ReaderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ReaderRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        return $this->ReaderInterface->requestReader($request, $id);
+        return $this->UserInterface->requestUser($request, $id);
     }
 
     /**
@@ -99,7 +97,7 @@ class ReaderController extends Controller
      */
     public function destroy($id)
     {
-        return $this->ReaderInterface->deleteReader($id);
+        return $this->UserInterface->deleteUser($id);
     
     }
 }

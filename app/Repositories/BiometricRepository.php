@@ -71,6 +71,7 @@ class BiometricRepository  extends RepositoryEloquent implements BiometricInterf
             if($id && !$biometrics) return $this->error("No Biometric with ID $id", 404);
 
             $biometrics->data = $request->data;
+            $biometrics->fpIndex = $request->fpIndex;
             // Remove a whitespace and make to lowercase
            
             

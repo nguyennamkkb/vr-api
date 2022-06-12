@@ -1,37 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ReaderRequest;
-use App\Interfaces\ReaderInterface;
-use App\Models\Reader;
+use App\Http\Requests\UserBiometricsRequest;
+use App\Interfaces\UserBiometricInterface;
+use App\Models\UserBiometric;
 use Illuminate\Support\Facades\DB;
-
-
-class ReaderController extends Controller
+class UserBiometricController extends Controller
 {
-    protected $ReaderInterface;
+    protected $UserBiometricInterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(ReaderInterface $ReaderInterface)
+    public function __construct(UserBiometricInterface $UserBiometricInterface)
     {
-        $this->ReaderInterface = $ReaderInterface;
+        $this->UserBiometricInterface = $UserBiometricInterface;
     }
     public function index(Request $request)
     {
        
-        $code = $request->code;
-        $name = $request->name;
-        $idUnit = $request->idUnit;
-        $address = $request->address;
+        $iduser = $request->iduser;
+        $idtype = $request->idtype;
+        $idbiometric = $request->idbiometric;
         $status = $request->status;
         $limit = $request->limit;
-        return $this->ReaderInterface->findBy($code,$name,$idUnit,$address,$status,$limit);
+        return $this->UserBiometricInterface->findBy($iduser,$idtype,$idbiometric,$status, $limit);
       
     }
 
@@ -51,9 +48,9 @@ class ReaderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ReaderRequest $request)
+    public function store(UserBiometricsRequest $request)
     {
-        return $this->ReaderInterface->requestReader($request);
+        return $this->UserBiometricInterface->requestUserBiometric($request);
     }
 
     /**
@@ -65,7 +62,7 @@ class ReaderController extends Controller
     public function show($id)
     {
         
-        return $this->ReaderInterface->getReaderById($id);
+        return $this->UserBiometricInterface->getUserBiometricById($id);
     }
 
     /**
@@ -86,9 +83,9 @@ class ReaderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ReaderRequest $request, $id)
+    public function update(UserBiometricsRequest $request, $id)
     {
-        return $this->ReaderInterface->requestReader($request, $id);
+        return $this->UserBiometricInterface->requestUserBiometric($request, $id);
     }
 
     /**
@@ -99,7 +96,7 @@ class ReaderController extends Controller
      */
     public function destroy($id)
     {
-        return $this->ReaderInterface->deleteReader($id);
+        return $this->UserBiometricInterface->deleteUserBiometric($id);
     
     }
 }

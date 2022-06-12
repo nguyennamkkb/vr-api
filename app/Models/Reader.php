@@ -5,8 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Reader extends Model
 {
     use HasFactory;
     protected $table = 'readers';
+    public function Unit()
+    {
+        return $this->belongsTo(Unit::class, 'idUnit');
+    }
+
 }
