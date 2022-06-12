@@ -14,6 +14,11 @@ class PassedTheGateResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'reader' => $this->idreader,
+            'user' => $this->iduser,
+            'time' => $this->time,
+        ];
     }
 }

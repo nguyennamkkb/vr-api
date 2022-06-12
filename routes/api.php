@@ -9,6 +9,7 @@ use App\Http\Controllers\API\BiometricController;
 use App\Http\Controllers\API\TypeBiometricController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserBiometricController;
+use App\Http\Controllers\Api\PassedTheGateController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,8 +66,8 @@ Route::get('userbiometrics/{id}',[ UserBiometricController::class, 'show']);// l
 Route::put('userbiometrics/{id}',[ UserBiometricController::class, 'update']); // sua thong tin
 Route::delete('userbiometrics/{id}',[ UserBiometricController::class, 'destroy']);// xoa thong tin
 
-Route::get('passedthegate',[ UserBiometricController::class, 'index']);// lay thong toan bo thong tin
-Route::post('passedthegate',[ UserBiometricController::class, 'store']); // them moi thong tin
-Route::get('passedthegate/{id}',[ UserBiometricController::class, 'show']);// lay thong tin cuar 1 ma
-Route::put('passedthegate/{id}',[ UserBiometricController::class, 'update']); // sua thong tin
-Route::delete('passedthegate/{id}',[ UserBiometricController::class, 'destroy']);// xoa thong tin
+Route::get('passedthegate',[ PassedTheGateController::class, 'index']);// lay thong toan bo thong tin
+Route::post('passedthegate',[ PassedTheGateController::class, 'store']); // them moi thong tin
+Route::get('passedthegate/{id}',[ PassedTheGateController::class, 'show']);// lay thong tin cuar 1 ma
+Route::put('passedthegate/{id}',[ PassedTheGateController::class, 'update']); // sua thong tin
+Route::delete('passedthegate/{id}',[ PassedTheGateController::class, 'destroy']);// xoa thong tin

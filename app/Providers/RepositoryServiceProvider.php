@@ -41,5 +41,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\UserBiometricInterface',
             'App\Repositories\UserBiometricRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\PassedTheGateInterface',
+            'App\Repositories\PassedTheGateRepository'
+        );
     }
 }
