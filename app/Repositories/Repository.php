@@ -6,8 +6,7 @@ use App\Http\Requests\ReaderRequest;
 use App\Interfaces\ReaderInterface;
 use App\Traits\ResponseAPI;
 use App\Models\Reader;
-use App\Http\Resources\ReadersResource;
-use App\Http\Resources\ReaderCollection;
+use App\Http\Resources\Reader\ReaderCollection;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Eloquent\RepositoryEloquent;
 use destroy;
@@ -22,14 +21,14 @@ class ReaderRepository extends RepositoryEloquent implements ReaderInterface
     }
     public function findBy($code, $name, $idUnit, $address, $status, $limit)
     {
-        
         try {
             $query = $this->model->newQuery();
             if (!empty($code)) {
+
                 $query = $this->where('code', 'like', "%$code%");
             }
             if (!empty($name)) {
-                $query =$this->where('name', 'like', "%$name%");
+                $query = $this->where('name', 'like', "%$name%");
             }
             if (!empty($idUnit)) {
                 $query = $this->where('idUnit', $idUnit);

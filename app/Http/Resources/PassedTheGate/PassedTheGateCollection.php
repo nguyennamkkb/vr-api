@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\PassedTheGate;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ReadersResource;
+use App\Http\Resources\PassedTheGate\PassedTheGateResource;
 
-
-class ReaderCollection extends ResourceCollection
+class PassedTheGateCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,11 +13,10 @@ class ReaderCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public static $wrap = 'reader';
     public function toArray($request)
     {
         return [
-            'data' => ReadersResource::collection($this->collection),
+            'data' => PassedTheGateResource::collection($this->collection),
             'meta' => [
                 'total' => $this->total(),
                 'count' => $this->count(),

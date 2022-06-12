@@ -15,7 +15,9 @@ class CreateTableBiometricsTable extends Migration
     {
         Schema::create('biometrics', function (Blueprint $table) {
             $table->id();
+            $table->integer('idTypeBiometric',4);
             $table->text('data',2100);
+            $table->integer('fpIndex',4)->nullable()->default(-1);
             $table->integer('status')->default(0);
             $table->timestamps();
         });

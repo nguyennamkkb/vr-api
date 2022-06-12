@@ -7,12 +7,33 @@ use App\Interfaces\BiometricInterface;
 use App\Traits\ResponseAPI;
 use App\Models\Biometric;
 use Illuminate\Support\Facades\DB;
-
-class BiometricRepository implements BiometricInterface
+use App\Http\Resources\Biometric\BiometricCollection;
+use App\Repositories\Eloquent\RepositoryEloquent;
+class BiometricRepository  extends RepositoryEloquent implements BiometricInterface
 {
     // Use ResponseAPI Trait in this repository
     use ResponseAPI;
+    public function model()
+    {
+        return Biometric::class;
+    }
+    public function findBy( $data, $status, $limit)
+    {
+        try {
+            $query = $this->model->newQuery();
+            if (!empty($data)) {
+                $query = $this->where('data', 'like', "%$data%");
+            }
+            if (!empty($status)) {
+                $query = $this->where('status', $status);
+            }
 
+            $query = $query->orderBy('id', 'desc');
+            return $this->success("All Biometrics", new BiometricCollection($query->paginate($limit)));
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), $e->getCode());
+        }
+    }
     public function getAllBiometrics()
     {
         try {
@@ -50,6 +71,7 @@ class BiometricRepository implements BiometricInterface
             if($id && !$biometrics) return $this->error("No Biometric with ID $id", 404);
 
             $biometrics->data = $request->data;
+            $biometrics->fpIndex = $request->fpIndex;
             // Remove a whitespace and make to lowercase
            
             

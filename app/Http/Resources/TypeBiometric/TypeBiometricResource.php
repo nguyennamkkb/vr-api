@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\TypeBiometric;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ReadersResource extends JsonResource
+class TypeBiometricResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -13,16 +12,12 @@ class ReadersResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-   
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'code' => $this->code,
             'name' => $this->name,
-            'unit' => $this->Unit->name,
-            'address' => $this->address,
+            
         ];
     }
-
 }

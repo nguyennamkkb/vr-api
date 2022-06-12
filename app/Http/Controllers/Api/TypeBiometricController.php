@@ -1,32 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\BiometricRequest;
-use App\Interfaces\BiometricInterface;
-use App\Models\Biometric;
+use App\Http\Requests\TypeBiometricRequest;
+use App\Interfaces\TypeBiometricInterface;
+use App\Models\TypeBiometric;
 use Illuminate\Support\Facades\DB;
-class BiometricController extends Controller
+
+class TypeBiometricController extends Controller
 {
-    protected $BiometricInterface;
+    protected $TypeBiometricInterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(BiometricInterface $biometricInterface)
+    public function __construct(TypeBiometricInterface $TypeBiometricInterface)
     {
-        $this->biometricInterface = $biometricInterface;
+        $this->TypeBiometricInterface = $TypeBiometricInterface;
     }
     public function index(Request $request)
     {
-        $data = $request->data;
+       
+        $name = $request->name;
         $status = $request->status;
         $limit = $request->limit;
-        return $this->biometricInterface->findBy($data,$status,$limit);
-        // return $this->biometricInterface->getAllBiometrics();
+        return $this->TypeBiometricInterface->findBy($name, $status, $limit);
+      
     }
 
     /**
@@ -45,9 +47,9 @@ class BiometricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BiometricRequest $request)
+    public function store(TypeBiometricRequest $request)
     {
-        return $this->biometricInterface->requestBiometric($request);
+        return $this->TypeBiometricInterface->requestTypeBiometric($request);
     }
 
     /**
@@ -59,7 +61,7 @@ class BiometricController extends Controller
     public function show($id)
     {
         
-        return $this->biometricInterface->getBiometricById($id);
+        return $this->TypeBiometricInterface->getTypeBiometricById($id);
     }
 
     /**
@@ -80,9 +82,9 @@ class BiometricController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BiometricRequest $request, $id)
+    public function update(TypeBiometricRequest $request, $id)
     {
-        return $this->biometricInterface->requestBiometric($request, $id);
+        return $this->TypeBiometricInterface->requestTypeBiometric($request, $id);
     }
 
     /**
@@ -93,7 +95,7 @@ class BiometricController extends Controller
      */
     public function destroy($id)
     {
-        return $this->biometricInterface->deleteBiometric($id);
+        return $this->TypeBiometricInterface->deleteTypeBiometric($id);
     
     }
 }

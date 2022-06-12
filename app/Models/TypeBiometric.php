@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class TypeBiometric extends Model
 {
     use HasFactory;
-    protected $table = 'users';
+    protected $table = 'type_biometrics';
+
 }

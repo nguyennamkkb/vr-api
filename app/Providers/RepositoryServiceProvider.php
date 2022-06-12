@@ -28,6 +28,26 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\BiometricInterface',
             'App\Repositories\BiometricRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\TypeBiometricInterface',
+            'App\Repositories\TypeBiometricRepository'
+        );
         
+        $this->app->bind(
+            'App\Interfaces\UserInterface',
+            'App\Repositories\UserRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\UserBiometricInterface',
+            'App\Repositories\UserBiometricRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\PassedTheGateInterface',
+            'App\Repositories\PassedTheGateRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\ReaderUserInterface',
+            'App\Repositories\ReaderUserRepository'
+        );
     }
 }

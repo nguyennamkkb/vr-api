@@ -24,6 +24,7 @@ class ReaderController extends Controller
     }
     public function index(Request $request)
     {
+       
         $code = $request->code;
         $name = $request->name;
         $idUnit = $request->idUnit;
@@ -31,9 +32,7 @@ class ReaderController extends Controller
         $status = $request->status;
         $limit = $request->limit;
         return $this->ReaderInterface->findBy($code,$name,$idUnit,$address,$status,$limit);
-        // return categoryResource::collection($list);
-
-        // return $this->ReaderInterface->findBy();
+      
     }
 
     /**

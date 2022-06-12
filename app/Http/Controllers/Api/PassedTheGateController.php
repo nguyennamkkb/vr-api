@@ -1,32 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\BiometricRequest;
-use App\Interfaces\BiometricInterface;
-use App\Models\Biometric;
+use App\Http\Requests\PassedTheGateRequest;
+use App\Interfaces\PassedTheGateInterface;
+use App\Models\PassedTheGate;
 use Illuminate\Support\Facades\DB;
-class BiometricController extends Controller
+
+class PassedTheGateController extends Controller
 {
-    protected $BiometricInterface;
+
+    protected $PassedTheGateInterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(BiometricInterface $biometricInterface)
+    public function __construct(PassedTheGateInterface $PassedTheGateInterface)
     {
-        $this->biometricInterface = $biometricInterface;
+        $this->PassedTheGateInterface = $PassedTheGateInterface;
     }
     public function index(Request $request)
     {
-        $data = $request->data;
+       
+        $idreader = $request->idreader;
+        $iduser = $request->iduser;
+        $time = $request->time;
         $status = $request->status;
         $limit = $request->limit;
-        return $this->biometricInterface->findBy($data,$status,$limit);
-        // return $this->biometricInterface->getAllBiometrics();
+
+        return $this->PassedTheGateInterface->findBy($idreader,$iduser,$time,$status, $limit);
+      
     }
 
     /**
@@ -45,9 +51,9 @@ class BiometricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BiometricRequest $request)
+    public function store(PassedTheGateRequest $request)
     {
-        return $this->biometricInterface->requestBiometric($request);
+        return $this->PassedTheGateInterface->requestPassedTheGate($request);
     }
 
     /**
@@ -59,7 +65,7 @@ class BiometricController extends Controller
     public function show($id)
     {
         
-        return $this->biometricInterface->getBiometricById($id);
+        return $this->PassedTheGateInterface->getPassedTheGateById($id);
     }
 
     /**
@@ -80,9 +86,9 @@ class BiometricController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BiometricRequest $request, $id)
+    public function update(PassedTheGateRequest $request, $id)
     {
-        return $this->biometricInterface->requestBiometric($request, $id);
+        return $this->PassedTheGateInterface->requestPassedTheGate($request, $id);
     }
 
     /**
@@ -93,7 +99,7 @@ class BiometricController extends Controller
      */
     public function destroy($id)
     {
-        return $this->biometricInterface->deleteBiometric($id);
+        return $this->PassedTheGateInterface->deletePassedTheGate($id);
     
     }
 }

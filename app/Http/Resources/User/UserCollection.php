@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ReadersResource;
+use App\Http\Resources\User\UserResource;
 
-
-class ReaderCollection extends ResourceCollection
+class UserCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,11 +13,10 @@ class ReaderCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public static $wrap = 'reader';
     public function toArray($request)
     {
         return [
-            'data' => ReadersResource::collection($this->collection),
+            'data' => UserResource::collection($this->collection),
             'meta' => [
                 'total' => $this->total(),
                 'count' => $this->count(),

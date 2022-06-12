@@ -1,32 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\BiometricRequest;
-use App\Interfaces\BiometricInterface;
-use App\Models\Biometric;
+use App\Http\Requests\UserRequest;
+use App\Interfaces\UserInterface;
 use Illuminate\Support\Facades\DB;
-class BiometricController extends Controller
+
+class UserController extends Controller
 {
-    protected $BiometricInterface;
+    protected $UserInterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(BiometricInterface $biometricInterface)
+    public function __construct(UserInterface $UserInterface)
     {
-        $this->biometricInterface = $biometricInterface;
+        $this->UserInterface = $UserInterface;
     }
     public function index(Request $request)
     {
-        $data = $request->data;
+       
+        $vid = $request->vid;
+        $name = $request->name;
+        $fid = $request->fid;
+        $phone = $request->phone;
         $status = $request->status;
         $limit = $request->limit;
-        return $this->biometricInterface->findBy($data,$status,$limit);
-        // return $this->biometricInterface->getAllBiometrics();
+    
+        return $this->UserInterface->findBy($name,$vid,$fid,$phone,$status, $limit);
     }
 
     /**
@@ -45,9 +49,9 @@ class BiometricController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BiometricRequest $request)
+    public function store(UserRequest $request)
     {
-        return $this->biometricInterface->requestBiometric($request);
+        return $this->UserInterface->requestUser($request);
     }
 
     /**
@@ -59,7 +63,7 @@ class BiometricController extends Controller
     public function show($id)
     {
         
-        return $this->biometricInterface->getBiometricById($id);
+        return $this->UserInterface->getUserById($id);
     }
 
     /**
@@ -80,9 +84,9 @@ class BiometricController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BiometricRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        return $this->biometricInterface->requestBiometric($request, $id);
+        return $this->UserInterface->requestUser($request, $id);
     }
 
     /**
@@ -93,7 +97,7 @@ class BiometricController extends Controller
      */
     public function destroy($id)
     {
-        return $this->biometricInterface->deleteBiometric($id);
+        return $this->UserInterface->deleteUser($id);
     
     }
 }

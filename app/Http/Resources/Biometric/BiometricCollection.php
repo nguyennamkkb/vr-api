@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Biometric;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ReadersResource;
+use App\Http\Resources\Biometric\BiometricResource;
 
-
-class ReaderCollection extends ResourceCollection
+class BiometricCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,11 +13,11 @@ class ReaderCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public static $wrap = 'reader';
+
     public function toArray($request)
     {
         return [
-            'data' => ReadersResource::collection($this->collection),
+            'data' => BiometricResource::collection($this->collection),
             'meta' => [
                 'total' => $this->total(),
                 'count' => $this->count(),
@@ -29,4 +28,5 @@ class ReaderCollection extends ResourceCollection
 
         ];
     }
+    
 }
