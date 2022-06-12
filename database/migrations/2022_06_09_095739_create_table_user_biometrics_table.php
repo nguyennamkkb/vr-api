@@ -16,7 +16,6 @@ class CreateTableUserBiometricsTable extends Migration
         Schema::create('user_biometrics', function (Blueprint $table) {
             $table->id();
             $table->integer('iduser')->default(0);
-            $table->integer('idtype')->default(0);
             $table->integer('idbiometric')->default(0);
             $table->integer('status')->default(0);
             $table->timestamps();

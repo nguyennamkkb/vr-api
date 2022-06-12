@@ -17,7 +17,6 @@ class CreateTablePassedTheGateTable extends Migration
             $table->id();
             $table->integer('idreader');
             $table->integer('iduser');
-            $table->integer('idUnit');
             $table->datetime('time');
             $table->integer('status')->default(0);
             $table->timestamps();
