@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 12, 2022 lúc 06:22 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 7.4.27
+-- Host: 127.0.0.1
+-- Generation Time: Jun 13, 2022 at 06:14 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `vr-api`
+-- Database: `vr-api`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `biometrics`
+-- Table structure for table `biometrics`
 --
 
 CREATE TABLE `biometrics` (
@@ -39,15 +39,15 @@ CREATE TABLE `biometrics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `biometrics`
+-- Dumping data for table `biometrics`
 --
 
 INSERT INTO `biometrics` (`id`, `idTypeBiometric`, `data`, `fpIndex`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(3, 3, '0000000000017C0A5907952A4C360610', '1', NULL, 0, '2022-06-12 08:05:46', '2022-06-12 08:05:46'),
-(4, 3, '0000000000017C0A5907952A4C360610', '2', NULL, 0, '2022-06-12 08:06:37', '2022-06-12 08:06:37'),
-(5, 3, '0000000000017C0A5907952A4C360610', '3', NULL, 0, '2022-06-12 08:06:56', '2022-06-12 08:06:56'),
-(6, 3, '0000000000017C0A5907952A4C360610', '4', NULL, 0, '2022-06-12 08:06:58', '2022-06-12 08:06:58'),
-(7, 3, '0000000000017C0A5907952A4C360610', '5', NULL, 0, '2022-06-12 08:07:00', '2022-06-12 08:07:00'),
+(3, 3, '0000000000017C0A5907952A4C360610', ',1,', NULL, 0, '2022-06-12 08:05:46', '2022-06-12 08:05:46'),
+(4, 3, '0000000000017C0A5907952A4C360610', ',2,', NULL, 0, '2022-06-12 08:06:37', '2022-06-12 08:06:37'),
+(5, 3, '0000000000017C0A5907952A4C360610', ',3,', NULL, 0, '2022-06-12 08:06:56', '2022-06-12 08:06:56'),
+(6, 3, '0000000000017C0A5907952A4C360610', ',4,', NULL, 0, '2022-06-12 08:06:58', '2022-06-12 08:06:58'),
+(7, 3, '0000000000017C0A5907952A4C360610', ',5,', NULL, 0, '2022-06-12 08:07:00', '2022-06-12 08:07:00'),
 (8, 3, '0000000000017C0A5907952A4C360610', '6', NULL, 0, '2022-06-12 08:07:41', '2022-06-12 08:07:41'),
 (9, 3, '0000000000017C0A5907952A4C360610', '7', NULL, 0, '2022-06-12 08:07:43', '2022-06-12 08:07:43'),
 (10, 3, '0000000000017C0A5907952A4C360610', '8', NULL, 0, '2022-06-12 08:07:45', '2022-06-12 08:07:45'),
@@ -90,7 +90,7 @@ INSERT INTO `biometrics` (`id`, `idTypeBiometric`, `data`, `fpIndex`, `note`, `s
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -106,7 +106,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -116,7 +116,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -134,7 +134,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `passed_the_gate`
+-- Table structure for table `passed_the_gate`
 --
 
 CREATE TABLE `passed_the_gate` (
@@ -150,7 +150,7 @@ CREATE TABLE `passed_the_gate` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -162,7 +162,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `readers`
+-- Table structure for table `readers`
 --
 
 CREATE TABLE `readers` (
@@ -177,7 +177,7 @@ CREATE TABLE `readers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `readers`
+-- Dumping data for table `readers`
 --
 
 INSERT INTO `readers` (`id`, `code`, `name`, `idUnit`, `address`, `status`, `created_at`, `updated_at`) VALUES
@@ -188,7 +188,7 @@ INSERT INTO `readers` (`id`, `code`, `name`, `idUnit`, `address`, `status`, `cre
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reader_user`
+-- Table structure for table `reader_user`
 --
 
 CREATE TABLE `reader_user` (
@@ -200,10 +200,233 @@ CREATE TABLE `reader_user` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `reader_user`
+--
+
+INSERT INTO `reader_user` (`id`, `idreader`, `iduser`, `status`, `created_at`, `updated_at`) VALUES
+(6, 1, 1, 0, '2022-06-13 08:22:08', '2022-06-13 08:22:08'),
+(7, 1, 2, 0, '2022-06-13 08:22:21', '2022-06-13 08:22:21'),
+(8, 1, 3, 0, '2022-06-13 08:22:23', '2022-06-13 08:22:23'),
+(9, 1, 4, 0, '2022-06-13 08:22:26', '2022-06-13 08:22:26'),
+(10, 1, 5, 0, '2022-06-13 08:22:29', '2022-06-13 08:22:29'),
+(11, 1, 6, 0, '2022-06-13 08:22:31', '2022-06-13 08:22:31'),
+(12, 1, 7, 0, '2022-06-13 08:22:33', '2022-06-13 08:22:33'),
+(13, 1, 8, 0, '2022-06-13 08:22:36', '2022-06-13 08:22:36'),
+(14, 1, 9, 0, '2022-06-13 08:22:39', '2022-06-13 08:22:39'),
+(15, 1, 10, 0, '2022-06-13 08:22:42', '2022-06-13 08:22:42'),
+(17, 1, 11, 0, '2022-06-13 08:22:50', '2022-06-13 08:22:50'),
+(18, 1, 12, 0, '2022-06-13 08:22:53', '2022-06-13 08:22:53'),
+(19, 1, 13, 0, '2022-06-13 08:22:56', '2022-06-13 08:22:56'),
+(20, 1, 14, 0, '2022-06-13 08:22:59', '2022-06-13 08:22:59'),
+(21, 1, 15, 0, '2022-06-13 08:23:02', '2022-06-13 08:23:02'),
+(22, 1, 16, 0, '2022-06-13 08:23:07', '2022-06-13 08:23:07'),
+(23, 1, 17, 0, '2022-06-13 08:23:11', '2022-06-13 08:23:11'),
+(24, 1, 18, 0, '2022-06-13 08:23:14', '2022-06-13 08:23:14'),
+(25, 1, 19, 0, '2022-06-13 08:23:17', '2022-06-13 08:23:17'),
+(26, 1, 20, 0, '2022-06-13 08:23:21', '2022-06-13 08:23:21'),
+(27, 1, 21, 0, '2022-06-13 08:23:24', '2022-06-13 08:23:24'),
+(28, 1, 22, 0, '2022-06-13 08:23:26', '2022-06-13 08:23:26'),
+(29, 1, 23, 0, '2022-06-13 08:23:29', '2022-06-13 08:23:29'),
+(30, 1, 24, 0, '2022-06-13 08:23:32', '2022-06-13 08:23:32'),
+(31, 1, 25, 0, '2022-06-13 08:23:39', '2022-06-13 08:23:39'),
+(32, 1, 26, 0, '2022-06-13 08:23:47', '2022-06-13 08:23:47'),
+(33, 1, 27, 0, '2022-06-13 08:23:52', '2022-06-13 08:23:52'),
+(34, 1, 28, 0, '2022-06-13 08:23:57', '2022-06-13 08:23:57'),
+(35, 1, 29, 0, '2022-06-13 08:24:00', '2022-06-13 08:24:00'),
+(36, 1, 30, 0, '2022-06-13 08:24:04', '2022-06-13 08:24:04'),
+(37, 1, 31, 0, NULL, NULL),
+(38, 1, 32, 0, NULL, NULL),
+(39, 1, 32, 0, NULL, NULL),
+(40, 1, 33, 0, NULL, NULL),
+(41, 1, 34, 0, NULL, NULL),
+(42, 1, 35, 0, NULL, NULL),
+(43, 1, 36, 0, NULL, NULL),
+(44, 1, 37, 0, NULL, NULL),
+(45, 1, 38, 0, NULL, NULL),
+(46, 1, 39, 0, NULL, NULL),
+(47, 1, 40, 0, NULL, NULL),
+(48, 1, 41, 0, NULL, NULL),
+(49, 1, 42, 0, NULL, NULL),
+(50, 1, 43, 0, NULL, NULL),
+(51, 1, 44, 0, NULL, NULL),
+(52, 1, 45, 0, NULL, NULL),
+(53, 1, 46, 0, NULL, NULL),
+(54, 1, 47, 0, NULL, NULL),
+(55, 1, 48, 0, NULL, NULL),
+(56, 1, 49, 0, NULL, NULL),
+(57, 1, 50, 0, NULL, NULL),
+(58, 1, 51, 0, NULL, NULL),
+(59, 1, 52, 0, NULL, NULL),
+(60, 1, 53, 0, NULL, NULL),
+(61, 1, 54, 0, NULL, NULL),
+(62, 1, 55, 0, NULL, NULL),
+(63, 1, 56, 0, NULL, NULL),
+(64, 1, 57, 0, NULL, NULL),
+(65, 1, 58, 0, NULL, NULL),
+(66, 1, 59, 0, NULL, NULL),
+(67, 1, 60, 0, NULL, NULL),
+(68, 1, 61, 0, NULL, NULL),
+(69, 1, 62, 0, NULL, NULL),
+(70, 1, 63, 0, NULL, NULL),
+(71, 1, 64, 0, NULL, NULL),
+(72, 1, 65, 0, NULL, NULL),
+(73, 1, 66, 0, NULL, NULL),
+(74, 1, 67, 0, NULL, NULL),
+(75, 1, 68, 0, NULL, NULL),
+(76, 1, 69, 0, NULL, NULL),
+(77, 1, 70, 0, NULL, NULL),
+(78, 1, 71, 0, NULL, NULL),
+(79, 1, 72, 0, NULL, NULL),
+(80, 2, 1, 0, NULL, NULL),
+(81, 2, 2, 0, NULL, NULL),
+(82, 2, 3, 0, NULL, NULL),
+(83, 2, 4, 0, NULL, NULL),
+(84, 2, 5, 0, NULL, NULL),
+(85, 2, 6, 0, NULL, NULL),
+(86, 2, 7, 0, NULL, NULL),
+(87, 2, 8, 0, NULL, NULL),
+(88, 2, 9, 0, NULL, NULL),
+(89, 2, 10, 0, NULL, NULL),
+(90, 2, 11, 0, NULL, NULL),
+(91, 2, 12, 0, NULL, NULL),
+(92, 2, 13, 0, NULL, NULL),
+(93, 2, 14, 0, NULL, NULL),
+(94, 2, 15, 0, NULL, NULL),
+(95, 2, 16, 0, NULL, NULL),
+(96, 2, 17, 0, NULL, NULL),
+(97, 2, 18, 0, NULL, NULL),
+(98, 2, 19, 0, NULL, NULL),
+(99, 2, 20, 0, NULL, NULL),
+(100, 2, 21, 0, NULL, NULL),
+(101, 2, 22, 0, NULL, NULL),
+(102, 2, 23, 0, NULL, NULL),
+(103, 2, 24, 0, NULL, NULL),
+(104, 2, 25, 0, NULL, NULL),
+(105, 2, 26, 0, NULL, NULL),
+(106, 2, 27, 0, NULL, NULL),
+(107, 2, 28, 0, NULL, NULL),
+(108, 2, 29, 0, NULL, NULL),
+(109, 2, 30, 0, NULL, NULL),
+(110, 2, 31, 0, NULL, NULL),
+(111, 2, 32, 0, NULL, NULL),
+(112, 2, 33, 0, NULL, NULL),
+(113, 2, 34, 0, NULL, NULL),
+(114, 2, 35, 0, NULL, NULL),
+(115, 2, 36, 0, NULL, NULL),
+(116, 2, 37, 0, NULL, NULL),
+(117, 2, 38, 0, NULL, NULL),
+(118, 2, 39, 0, NULL, NULL),
+(119, 2, 40, 0, NULL, NULL),
+(120, 2, 41, 0, NULL, NULL),
+(121, 2, 42, 0, NULL, NULL),
+(122, 2, 43, 0, NULL, NULL),
+(123, 2, 44, 0, NULL, NULL),
+(124, 2, 45, 0, NULL, NULL),
+(125, 2, 46, 0, NULL, NULL),
+(126, 2, 47, 0, NULL, NULL),
+(127, 2, 48, 0, NULL, NULL),
+(128, 2, 49, 0, NULL, NULL),
+(129, 2, 50, 0, NULL, NULL),
+(130, 2, 51, 0, NULL, NULL),
+(131, 2, 52, 0, NULL, NULL),
+(132, 2, 53, 0, NULL, NULL),
+(133, 2, 54, 0, NULL, NULL),
+(134, 2, 55, 0, NULL, NULL),
+(135, 2, 56, 0, NULL, NULL),
+(136, 2, 57, 0, NULL, NULL),
+(137, 2, 58, 0, NULL, NULL),
+(138, 2, 59, 0, NULL, NULL),
+(139, 2, 60, 0, NULL, NULL),
+(140, 2, 61, 0, NULL, NULL),
+(141, 2, 62, 0, NULL, NULL),
+(142, 2, 63, 0, NULL, NULL),
+(143, 2, 64, 0, NULL, NULL),
+(144, 2, 65, 0, NULL, NULL),
+(145, 2, 66, 0, NULL, NULL),
+(146, 2, 67, 0, NULL, NULL),
+(147, 2, 68, 0, NULL, NULL),
+(148, 2, 69, 0, NULL, NULL),
+(149, 2, 70, 0, NULL, NULL),
+(150, 2, 71, 0, NULL, NULL),
+(151, 2, 72, 0, NULL, NULL),
+(152, 3, 1, 0, NULL, NULL),
+(153, 3, 2, 0, NULL, NULL),
+(154, 3, 3, 0, NULL, NULL),
+(155, 3, 4, 0, NULL, NULL),
+(156, 3, 5, 0, NULL, NULL),
+(157, 3, 6, 0, NULL, NULL),
+(158, 3, 7, 0, NULL, NULL),
+(159, 3, 8, 0, NULL, NULL),
+(160, 3, 9, 0, NULL, NULL),
+(161, 3, 10, 0, NULL, NULL),
+(162, 3, 11, 0, NULL, NULL),
+(163, 3, 12, 0, NULL, NULL),
+(164, 3, 13, 0, NULL, NULL),
+(165, 3, 14, 0, NULL, NULL),
+(166, 3, 15, 0, NULL, NULL),
+(167, 3, 16, 0, NULL, NULL),
+(168, 3, 17, 0, NULL, NULL),
+(169, 3, 18, 0, NULL, NULL),
+(170, 3, 19, 0, NULL, NULL),
+(171, 3, 20, 0, NULL, NULL),
+(172, 3, 21, 0, NULL, NULL),
+(173, 3, 22, 0, NULL, NULL),
+(174, 3, 23, 0, NULL, NULL),
+(175, 3, 24, 0, NULL, NULL),
+(176, 3, 25, 0, NULL, NULL),
+(177, 3, 26, 0, NULL, NULL),
+(178, 3, 27, 0, NULL, NULL),
+(179, 3, 28, 0, NULL, NULL),
+(180, 3, 29, 0, NULL, NULL),
+(181, 3, 30, 0, NULL, NULL),
+(182, 3, 31, 0, NULL, NULL),
+(183, 3, 32, 0, NULL, NULL),
+(184, 3, 33, 0, NULL, NULL),
+(185, 3, 34, 0, NULL, NULL),
+(186, 3, 35, 0, NULL, NULL),
+(187, 3, 36, 0, NULL, NULL),
+(188, 3, 37, 0, NULL, NULL),
+(189, 3, 38, 0, NULL, NULL),
+(190, 3, 39, 0, NULL, NULL),
+(191, 3, 40, 0, NULL, NULL),
+(192, 3, 41, 0, NULL, NULL),
+(193, 3, 42, 0, NULL, NULL),
+(194, 3, 43, 0, NULL, NULL),
+(195, 3, 44, 0, NULL, NULL),
+(196, 3, 45, 0, NULL, NULL),
+(197, 3, 46, 0, NULL, NULL),
+(198, 3, 47, 0, NULL, NULL),
+(199, 3, 48, 0, NULL, NULL),
+(200, 3, 49, 0, NULL, NULL),
+(201, 3, 50, 0, NULL, NULL),
+(202, 3, 51, 0, NULL, NULL),
+(203, 3, 52, 0, NULL, NULL),
+(204, 3, 53, 0, NULL, NULL),
+(205, 3, 54, 0, NULL, NULL),
+(206, 3, 55, 0, NULL, NULL),
+(207, 3, 56, 0, NULL, NULL),
+(208, 3, 57, 0, NULL, NULL),
+(209, 3, 58, 0, NULL, NULL),
+(210, 3, 59, 0, NULL, NULL),
+(211, 3, 60, 0, NULL, NULL),
+(212, 3, 61, 0, NULL, NULL),
+(213, 3, 62, 0, NULL, NULL),
+(214, 3, 63, 0, NULL, NULL),
+(215, 3, 64, 0, NULL, NULL),
+(216, 3, 65, 0, NULL, NULL),
+(217, 3, 66, 0, NULL, NULL),
+(218, 3, 67, 0, NULL, NULL),
+(219, 3, 68, 0, NULL, NULL),
+(220, 3, 69, 0, NULL, NULL),
+(221, 3, 70, 0, NULL, NULL),
+(222, 3, 71, 0, NULL, NULL),
+(223, 3, 72, 0, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `type_biometrics`
+-- Table structure for table `type_biometrics`
 --
 
 CREATE TABLE `type_biometrics` (
@@ -215,7 +438,7 @@ CREATE TABLE `type_biometrics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `type_biometrics`
+-- Dumping data for table `type_biometrics`
 --
 
 INSERT INTO `type_biometrics` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
@@ -226,7 +449,7 @@ INSERT INTO `type_biometrics` (`id`, `name`, `status`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `units`
+-- Table structure for table `units`
 --
 
 CREATE TABLE `units` (
@@ -238,7 +461,7 @@ CREATE TABLE `units` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `units`
+-- Dumping data for table `units`
 --
 
 INSERT INTO `units` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
@@ -249,7 +472,7 @@ INSERT INTO `units` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -265,7 +488,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `vid`, `fid`, `phone`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -343,7 +566,7 @@ INSERT INTO `users` (`id`, `name`, `vid`, `fid`, `phone`, `status`, `remember_to
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user_biometrics`
+-- Table structure for table `user_biometrics`
 --
 
 CREATE TABLE `user_biometrics` (
@@ -356,7 +579,7 @@ CREATE TABLE `user_biometrics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `user_biometrics`
+-- Dumping data for table `user_biometrics`
 --
 
 INSERT INTO `user_biometrics` (`id`, `iduser`, `idbiometric`, `status`, `created_at`, `updated_at`) VALUES
@@ -404,136 +627,136 @@ INSERT INTO `user_biometrics` (`id`, `iduser`, `idbiometric`, `status`, `created
 (42, 69, 44, 0, '2022-06-12 08:45:21', '2022-06-12 08:45:21');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `biometrics`
+-- Indexes for table `biometrics`
 --
 ALTER TABLE `biometrics`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Chỉ mục cho bảng `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `passed_the_gate`
+-- Indexes for table `passed_the_gate`
 --
 ALTER TABLE `passed_the_gate`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Chỉ mục cho bảng `readers`
+-- Indexes for table `readers`
 --
 ALTER TABLE `readers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `reader_user`
+-- Indexes for table `reader_user`
 --
 ALTER TABLE `reader_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `type_biometrics`
+-- Indexes for table `type_biometrics`
 --
 ALTER TABLE `type_biometrics`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `units`
+-- Indexes for table `units`
 --
 ALTER TABLE `units`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `user_biometrics`
+-- Indexes for table `user_biometrics`
 --
 ALTER TABLE `user_biometrics`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `biometrics`
+-- AUTO_INCREMENT for table `biometrics`
 --
 ALTER TABLE `biometrics`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT cho bảng `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT cho bảng `passed_the_gate`
+-- AUTO_INCREMENT for table `passed_the_gate`
 --
 ALTER TABLE `passed_the_gate`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `readers`
+-- AUTO_INCREMENT for table `readers`
 --
 ALTER TABLE `readers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `reader_user`
+-- AUTO_INCREMENT for table `reader_user`
 --
 ALTER TABLE `reader_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 
 --
--- AUTO_INCREMENT cho bảng `type_biometrics`
+-- AUTO_INCREMENT for table `type_biometrics`
 --
 ALTER TABLE `type_biometrics`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `units`
+-- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
--- AUTO_INCREMENT cho bảng `user_biometrics`
+-- AUTO_INCREMENT for table `user_biometrics`
 --
 ALTER TABLE `user_biometrics`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
