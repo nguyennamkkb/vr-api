@@ -72,14 +72,11 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
             // Then update the ReaderUser
             // Else create the new one.
             $ReaderUser = $id ? ReaderUser::find($id) : new ReaderUser;
-
             // Check the ReaderUser 
             if ($id && !$ReaderUser) return $this->error("No ReaderUser with ID $id", 404);
-
-            $ReaderUser->code = $request->code;
-            $ReaderUser->name = $request->name;
-            $ReaderUser->idUnit = $request->idUnit;
-            $ReaderUser->address = $request->address;
+            
+            $ReaderUser->idreader = $request->idreader;
+            $ReaderUser->iduser = $request->iduser;
             // Remove a whitespace and make to lowercase
             $ReaderUser->save();
 
