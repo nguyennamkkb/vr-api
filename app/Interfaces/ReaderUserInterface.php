@@ -11,4 +11,5 @@ interface ReaderUserInterface
     public function getReaderUserById($id);
     public function requestReaderUser(ReaderUserRequest $request, $id = null);
     public function deleteReaderUser($id);
+    public function getAccessDoor($fpIndex,$readercode);
 }

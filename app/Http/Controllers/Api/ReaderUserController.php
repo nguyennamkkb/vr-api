@@ -99,6 +99,12 @@ class ReaderUserController extends Controller
     public function destroy($id)
     {
         return $this->ReaderUserInterface->deleteReaderUser($id);
-    
+    }
+    public function getAccessDoor(Request $request)
+    {
+        $fpIndex = $request->fpIndex;
+        $readercode = $request->readercode;
+
+        return $this->ReaderUserInterface->getAccessDoor($fpIndex, $readercode);
     }
 }

@@ -73,8 +73,11 @@ Route::get('passedthegate/{id}',[ PassedTheGateController::class, 'show']);// la
 Route::put('passedthegate/{id}',[ PassedTheGateController::class, 'update']); // sua thong tin
 Route::delete('passedthegate/{id}',[ PassedTheGateController::class, 'destroy']);// xoa thong tin
 
+
 Route::get('readerusers',[ ReaderUserController::class, 'index']);// lay thong toan bo thong tin
 Route::post('readerusers',[ ReaderUserController::class, 'store']); // them moi thong tin
 Route::get('readerusers/{id}',[ ReaderUserController::class, 'show']);// lay thong tin cuar 1 ma
 Route::put('readerusers/{id}',[ ReaderUserController::class, 'update']); // sua thong tin
 Route::delete('readerusers/{id}',[ ReaderUserController::class, 'destroy']);// xoa thong tin
+
+Route::get('getAccessDoor',[ ReaderUserController::class, 'getAccessDoor']);// truy van mo cua
