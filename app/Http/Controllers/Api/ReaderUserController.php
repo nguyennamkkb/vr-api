@@ -109,6 +109,7 @@ class ReaderUserController extends Controller
     }
     public function getAccessDoorByCard(Request $request)
     {
+        // dd($request)
         $vid = $request->vid;
         $readercode = $request->readercode;
 
