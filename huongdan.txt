@@ -29,6 +29,6 @@ php artisan make:resource ReaderUser/ReaderUserCollection
 
 
 
-php artisan serve --host=192.168.31.60 --port=5555
+php artisan serve --host=192.168.55.106 --port=5555
 
 
