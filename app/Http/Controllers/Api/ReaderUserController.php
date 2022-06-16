@@ -107,4 +107,12 @@ class ReaderUserController extends Controller
 
         return $this->ReaderUserInterface->getAccessDoor($fpIndex, $readercode);
     }
+    public function getAccessDoorByCard(Request $request)
+    {
+        // dd($request)
+        $vid = $request->vid;
+        $readercode = $request->readercode;
+
+        return $this->ReaderUserInterface->getAccessDoorByCard($vid,$readercode);
+    }
 }

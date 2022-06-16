@@ -81,3 +81,4 @@ Route::put('readerusers/{id}',[ ReaderUserController::class, 'update']); // sua 
 Route::delete('readerusers/{id}',[ ReaderUserController::class, 'destroy']);// xoa thong tin
 
 Route::get('getAccessDoor',[ ReaderUserController::class, 'getAccessDoor']);// truy van mo cua
+Route::get('getAccessDoorByCard',[ ReaderUserController::class, 'getAccessDoorByCard']);// truy van mo cua

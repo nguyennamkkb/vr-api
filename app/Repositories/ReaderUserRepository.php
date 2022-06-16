@@ -116,23 +116,48 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
     }
     public function getAccessDoor($fpIndex, $readercode)
     {
-        $resstt = 0;
-        // $fpIndex1 = ","+$fpIndex+",";
-        // $readercode = "0000000000017C0A5907952A4C360610";
-        $idreader = DB::table('readers')->select('id')->where('code', $readercode)->first();
-        $idbio = DB::table('biometrics')->select('id')->where('idTypeBiometric', 3)->where('fpIndex', 'like', "%$fpIndex%")->first();
-        $iduser = DB::table('user_biometrics')->select('iduser')->where('idbiometric', $idbio->id)->first();
+        try {
+            $resstt = 0;
+            $fpIndex1 = ",$fpIndex,";
+            // $readercode = "0000000000017C0A5907952A4C360610";
+            $idreader = DB::table('readers')->select('id')->where('code', $readercode)->first();
+            $idbio = DB::table('biometrics')->select('id')->where('idTypeBiometric', 3)->where('fpIndex', 'like', "%$fpIndex1%")->first();
+            $iduser = DB::table('user_biometrics')->select('iduser')->where('idbiometric', $idbio->id)->first();
 
-        $res = DB::table('reader_user')->select('id')->where('idreader', $idreader->id)->where('iduser', $iduser->iduser)->get()->count();
-        $time = Carbon::now();
-        
-        if ($res) {
-            $resstt = ReaderUserRepository::CreatePassedToGate($iduser->iduser, $idreader->id, $time);
+            $res = DB::table('reader_user')->select('id')->where('idreader', $idreader->id)->where('iduser', $iduser->iduser)->get()->count();
+            if ($idreader == null || $idbio == null || $iduser == null) return 0;
+            $time = Carbon::now();
+
+            if ($res) {
+                $resstt = ReaderUserRepository::CreatePassedToGate($iduser->iduser, $idreader->id, $time);
+            }
+
+            return $resstt;
+        } catch (\Throwable $th) {
+            return 0;
         }
-
-        return $resstt;
     }
-     function CreatePassedToGate($iduser, $idreader, $time)
+    public function getAccessDoorByCard($vid, $readercode)
+    {
+        try {
+            $resstt = 0;
+            // $readercode = "0000000000017C0A5907952A4C360610";
+            $idreader = DB::table('readers')->select('id')->where('code', $readercode)->first();
+
+            $iduser = DB::table('users')->select('id')->where('vid', 'like', "%$vid%")->first();
+            $res = DB::table('reader_user')->select('id')->where('idreader', $idreader->id)->where('iduser', $iduser->id)->get()->count();
+            if ($idreader == null || $iduser == null || $res == null) return 0;
+            $time = Carbon::now();
+            if ($res) {
+                $resstt = ReaderUserRepository::CreatePassedToGate($iduser->id, $idreader->id, $time);
+            }
+
+            return $resstt;
+        } catch (\Throwable $th) {
+            return 0;
+        }
+    }
+    function CreatePassedToGate($iduser, $idreader, $time)
     {
         // DB::beginTransaction();
         try {
@@ -141,7 +166,7 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
             // Else create the new one.
             $createptg =  new PassedTheGate;
             // Check the ReaderUser 
-            
+
             $createptg->idreader = $idreader;
             $createptg->iduser = $iduser;
             $createptg->time = $time;
@@ -153,7 +178,6 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
         } catch (\Exception $e) {
             // DB::rollBack();
             return 0;
-            
         }
     }
 }
