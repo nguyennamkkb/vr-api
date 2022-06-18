@@ -109,10 +109,18 @@ class ReaderUserController extends Controller
     }
     public function getAccessDoorByCard(Request $request)
     {
-        // dd($request)
         $vid = $request->vid;
         $readercode = $request->readercode;
 
         return $this->ReaderUserInterface->getAccessDoorByCard($vid,$readercode);
+    }
+    public function addNewUserBioReader(Request $request)
+    {
+        $userName = $request->userName;
+        $vID = $request->vID;
+        $fpIndex = $request->fpIndex;
+        $readerCode = $request->readerCode;
+
+        return $this->ReaderUserInterface->addNewUserBioReader($userName, $vID, $fpIndex, $readerCode);
     }
 }

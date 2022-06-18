@@ -82,3 +82,4 @@ Route::delete('readerusers/{id}',[ ReaderUserController::class, 'destroy']);// x
 
 Route::get('getAccessDoor',[ ReaderUserController::class, 'getAccessDoor']);// truy van mo cua
 Route::get('getAccessDoorByCard',[ ReaderUserController::class, 'getAccessDoorByCard']);// truy van mo cua
+Route::post('addNewUserBioReader',[ ReaderUserController::class, 'addNewUserBioReader']);// truy van mo cua

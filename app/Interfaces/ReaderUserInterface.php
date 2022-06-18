@@ -13,4 +13,5 @@ interface ReaderUserInterface
     public function deleteReaderUser($id);
     public function getAccessDoor($fpIndex,$readercode);
     public function getAccessDoorByCard($vid,$readercode);
+    public function addNewUserBioReader($userName, $vID, $fpIndex, $readerCode);
 }

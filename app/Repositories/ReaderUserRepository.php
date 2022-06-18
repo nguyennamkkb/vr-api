@@ -8,6 +8,10 @@ use App\Traits\ResponseAPI;
 use App\Models\ReaderUser;
 use App\Models\PassedTheGate;
 use App\Http\Resources\ReaderUser\ReaderUserCollection;
+use App\Models\Biometric;
+use App\Models\Reader;
+use App\Models\User;
+use App\Models\UserBiometric;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Eloquent\RepositoryEloquent;
 use destroy;
@@ -165,8 +169,6 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
             // Then update the ReaderUser
             // Else create the new one.
             $createptg =  new PassedTheGate;
-            // Check the ReaderUser 
-
             $createptg->idreader = $idreader;
             $createptg->iduser = $iduser;
             $createptg->time = $time;
@@ -179,5 +181,59 @@ class ReaderUserRepository extends RepositoryEloquent implements ReaderUserInter
             // DB::rollBack();
             return 0;
         }
+    }
+
+    public function addNewUserBioReader($userName, $vID, $fpIndex, $readerCode)
+    {
+        $idUser = ReaderUserRepository::createUser($userName, $vID);
+        $idBiometric = ReaderUserRepository::createBiometric(3, $readerCode, $fpIndex);
+        ReaderUserRepository::createUserBiometric($idUser, $idBiometric);
+        $idreader = DB::table('readers')->select('id')->where('code','like', "%$readerCode%")->first();
+        $userreader = ReaderUserRepository::createUserReader($idUser, $idreader->id);
+
+        if ($userreader) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    function createUser($userName, $vid)
+    {
+        $user =  new User;
+        $user->name = $userName;
+        $user->vid = $vid;
+        // Remove a whitespace and make to lowercase
+        $user->save();
+        return $user->id;
+    }
+    function createBiometric($type = 3, $readerCode, $fpIndex)
+    {
+        $biometric =  new Biometric;
+        $biometric->idTypeBiometric = $type;
+        $biometric->data = $readerCode;
+        $biometric->fpIndex = $fpIndex;
+        // Remove a whitespace and make to lowercase
+        $biometric->save();
+        return $biometric->id;
+    }
+    function createUserBiometric($idUser, $idBiometric)
+    {
+        $userbiometrics =  new UserBiometric;
+        $userbiometrics->idUser = $idUser;
+        $userbiometrics->idBiometric = $idBiometric;
+
+        // Remove a whitespace and make to lowercase
+        $userbiometrics->save();
+        return $userbiometrics->id;
+    }
+    function createUserReader($iduser, $idreader)
+    {
+        $userreader =  new ReaderUser;
+        $userreader->idreader = $idreader;
+        $userreader->iduser = $iduser;
+
+        // Remove a whitespace and make to lowercase
+        $userreader->save();
+        return $userreader->id;
     }
 }
