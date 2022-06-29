@@ -11,4 +11,6 @@ interface PassedTheGateInterface
     public function getPassedTheGateById($id);
     public function requestPassedTheGate(PassedTheGateRequest $request, $id = null);
     public function deletePassedTheGate($id);
+    public function seeTimeSheet();
+    public function updatepassedthegate($request);
 }

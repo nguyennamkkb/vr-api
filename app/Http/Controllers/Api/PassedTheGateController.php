@@ -102,4 +102,14 @@ class PassedTheGateController extends Controller
         return $this->PassedTheGateInterface->deletePassedTheGate($id);
     
     }
+    public function seeTimeSheet()
+    {
+        return $this->PassedTheGateInterface->seeTimeSheet();
+    
+    }
+    public function updatepassedthegate(Request $request)
+    {
+        return $this->PassedTheGateInterface->updatepassedthegate($request);
+    
+    }
 }

@@ -9,42 +9,42 @@
 </head>
 
 <body>
-    <!-- <input type="file" name="inputfile" id="inputfile">
+    <input type="file" name="inputfile" id="inputfile">
     <br>
 
-    <pre id="output"></pre> -->
+    <pre id="output"></pre>
 
     <script type="text/javascript">
-        // document.getElementById('inputfile')
-        //     .addEventListener('change', function() {
+        document.getElementById('inputfile')
+            .addEventListener('change', function() {
 
-        //         var fr = new FileReader();
-        //         fr.onload = function() {
-        //             var str;
-        //             document.getElementById('output')
-        //                 .textContent = fr.result;
+                var fr = new FileReader();
+                fr.onload = function() {
+                    var str;
+                    document.getElementById('output')
+                        .textContent = fr.result;
 
-        //             str = fr.result;
-        //             var json = "{ [";
-        //             const myArray = str.split("),(");
-        //             console.log(myArray);
-        //             myArray.forEach(e => {
-        //                 json += "{'reader':" + e.split(",")[1] + ", 'vid':" + e.split(",")[2] + ", 'time':" + e.split(",")[5] + "},";
+                    str = fr.result;
+                    var json = "{'data': [";
+                    const myArray = str.split("),(");
+                    console.log(myArray);
+                    myArray.forEach(e => {
+                        json += "{'vid':" + e.split(",")[2] + ", 'time':" + e.split(",")[5] + "},";
 
-        //             });
-        //             json += "]}";
-        //             console.log(json);
-        //         }
+                    });
+                    json += "]}";
+                    console.log(json);
+                }
 
-        //         fr.readAsText(this.files[0]);
-        //     })
+                fr.readAsText(this.files[0]);
+            })
 
-        var str = "";
-        var n = 0;
-        for (let index = 1; index <= 43; index++) {
-            str += "," + ((n) * 100 + index) + "," + ((n + 1) * 100 + index) + "," + ((n + 2) * 100 + index) + "," + ((n + 3) * 100 + index) + "," + ((n + 4) * 100 + index) + "," + ((n + 5) * 100 + index) + "," + ((n + 6) * 100 + index) + "," + ((n + 7) * 100 + index) + "," + ((n + 8) * 100 + index) + "," + ((n + 9) * 100 + index) + ",\n";
-        }
-        console.log(str);
+        // var str = "";
+        // var n = 0;
+        // for (let index = 1; index <= 43; index++) {
+        //     str += "," + ((n) * 100 + index) + "," + ((n + 1) * 100 + index) + "," + ((n + 2) * 100 + index) + "," + ((n + 3) * 100 + index) + "," + ((n + 4) * 100 + index) + "," + ((n + 5) * 100 + index) + "," + ((n + 6) * 100 + index) + "," + ((n + 7) * 100 + index) + "," + ((n + 8) * 100 + index) + "," + ((n + 9) * 100 + index) + ",\n";
+        // }
+        // console.log(str);
     </script>
 </body>
 
