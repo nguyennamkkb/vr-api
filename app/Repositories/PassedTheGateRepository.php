@@ -162,8 +162,8 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
                 $myObj->id = $i;
                 $myObj->name = $user->name;
                 $myObj->date = "" . $year . "-" . $month . "-" . (string)($i + 1) ;
-                $myObj->firstTime = !is_object($firstTime)?"":$firstTime->time;
-                $myObj->lastTime =  !is_object($lastTime)?"":$lastTime->time;
+                $myObj->firstTime = !is_object($firstTime)?"":substr($firstTime->time,-8);
+                $myObj->lastTime =  !is_object($lastTime)?"":substr($lastTime->time,-8);
                 // $myObj->type1 =  gettype($lastTime);
                 // $myObj->type2 =  gettype($lastTime);
                  

@@ -72,8 +72,8 @@ Route::post('passedthegate',[ PassedTheGateController::class, 'store']); // them
 Route::get('passedthegate/{id}',[ PassedTheGateController::class, 'show']);// lay thong tin cuar 1 ma
 Route::put('passedthegate/{id}',[ PassedTheGateController::class, 'update']); // sua thong tin
 Route::delete('passedthegate/{id}',[ PassedTheGateController::class, 'destroy']);// xoa thong tin
-Route::post('seeTimeSheet',[ PassedTheGateController::class, 'seeTimeSheet']);// lay thong toan bo thong tin
-Route::get('updatepassedthegate',[ PassedTheGateController::class, 'updatepassedthegate']);// lay thong toan bo thong tin
+Route::get('seeTimeSheet',[ PassedTheGateController::class, 'seeTimeSheet']);// lay thong toan bo thong tin
+Route::post('updatepassedthegate',[ PassedTheGateController::class, 'updatepassedthegate']);// lay thong toan bo thong tin
 
 
 
