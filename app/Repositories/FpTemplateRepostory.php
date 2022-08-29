@@ -129,9 +129,8 @@ class FpTemplateRepostory extends RepositoryEloquent implements FpTemplateInterf
     public function getBackupFPTemplate($idReader, $offset)
     {
         $FpTemplate = DB::table('fpTemplates')->select('template')->where('idReader', $idReader)->offset($offset)->first();
-        // dd($FpTemplate->template);
         if ($FpTemplate) {
-            return $FpTemplate->template;
+            return $FpTemplate->index."_".$FpTemplate->template;
         }
         return "0";
     }
