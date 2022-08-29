@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserBiometricController;
 use App\Http\Controllers\Api\PassedTheGateController;
 use App\Http\Controllers\Api\ReaderUserController;
+use App\Http\Controllers\API\FpTemplateController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -87,3 +88,9 @@ Route::delete('readerusers/{id}',[ ReaderUserController::class, 'destroy']);// x
 Route::get('getAccessDoor',[ ReaderUserController::class, 'getAccessDoor']);// truy van mo cua
 Route::get('getAccessDoorByCard',[ ReaderUserController::class, 'getAccessDoorByCard']);// truy van mo cua
 Route::post('addNewUserBioReader',[ ReaderUserController::class, 'addNewUserBioReader']);// truy van mo cua
+
+//backup Fp template
+// Route::get('fptemplate',[ FpTemplateController::class, 'index']);// lay thong toan bo thong tin
+Route::get('fptemplate',[ FpTemplateController::class, 'store']);// Theem template
+Route::get('fptemplategetIdReaderbyid7462/{id}',[ FpTemplateController::class, 'getIdReaderbyid7462']);// Theem template
+Route::post('getBackupFPTemplate',[ FpTemplateController::class, 'getBackupFPTemplate']);// Theem template

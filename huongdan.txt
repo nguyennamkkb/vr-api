@@ -5,31 +5,35 @@ npm install
 4. Cai goi composer:
 composer install
 5. Tao database
-php artisan make:migration create_users_table --create=users
+php artisan make:migration create_fpTemplates_table --create=fpTemplates
 6. Them truong vao bang da co
 php artisan make:migration add_votes_to_users_table --table=users
+Tạo Models
+php artisan make:model FpTemplates	
 
 ReaderUser	
 II Quy trinh tạo API
 1. Tạo request
-php artisan make:request ReaderUserRequest
+php artisan make:request FpTemplateRequest
 
 Tạo Models
-php artisan make:model ReaderUser	
-2. Tạo UserInterface.php, place the file in your app/Interfaces folder. 
+php artisan make:model FpTemplate
+
+2. Tạo FpTemplateInterface.php, place the file in your app/Interfaces folder. 
 
 3. Tạo Controller API
-php artisan make:Controller Api/ReaderUserController --api
-4. Tạo UserRepostitory.php, place the file in your app/Repositories folder.
+php artisan make:Controller Api/FpTemplateController --api
+4. Tạo FpTemplateRepostitory.php, place the file in your app/Repositories folder.
 
 5 Tao API Resources trả về giá trị truy vấn liên kết các bảng
-php artisan make:resource ReaderUser/ReaderUserResource
-php artisan make:resource ReaderUser/ReaderUserCollection
+php artisan make:resource FpTemplate/FpTemplateResource
+php artisan make:resource FpTemplate/FpTemplateCollection
 
 
 
 
 php artisan serve --host=192.168.55.106 --port=5555
+php artisan serve --host=192.168.33.14 --port=5555
 
 
 start-domain domain1

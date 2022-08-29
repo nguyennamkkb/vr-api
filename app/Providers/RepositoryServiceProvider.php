@@ -49,5 +49,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\ReaderUserInterface',
             'App\Repositories\ReaderUserRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\FpTemplateInterface',
+            'App\Repositories\FpTemplateRepostory'
+        );
     }
 }
