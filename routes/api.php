@@ -93,4 +93,4 @@ Route::post('addNewUserBioReader',[ ReaderUserController::class, 'addNewUserBioR
 // Route::get('fptemplate',[ FpTemplateController::class, 'index']);// lay thong toan bo thong tin
 Route::get('fptemplate',[ FpTemplateController::class, 'store']);// Theem template
 Route::get('fptemplategetIdReaderbyid7462/{id}',[ FpTemplateController::class, 'getIdReaderbyid7462']);// Theem template
-Route::post('getBackupFPTemplate',[ FpTemplateController::class, 'getBackupFPTemplate']);// Theem template
+Route::get('getBackupFPTemplate',[ FpTemplateController::class, 'getBackupFPTemplate']);// Theem template
