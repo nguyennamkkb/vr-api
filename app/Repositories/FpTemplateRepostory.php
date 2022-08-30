@@ -72,8 +72,20 @@ class FpTemplateRepostory extends RepositoryEloquent implements FpTemplateInterf
             // If FpTemplate exists when we find it
             // Then update the FpTemplate
             // Else create the new one.
-            $FpTemplate = $id ? FpTemplate::find($id) : new FpTemplate;
-
+            $issetFpTemplate = DB::table('fpTemplates')->select("id","template")->where('template','like', "%$request->template%")->limit(1)->first();
+            // dd($issetFpTemplate);
+            if($id){
+                $FpTemplate = FpTemplate::find($id);
+            }
+            else if(!is_null($issetFpTemplate)){
+                
+                $FpTemplate = FpTemplate::find($issetFpTemplate->id);
+            }
+            else{
+                $FpTemplate = new FpTemplate;
+                // dd($FpTemplate);
+            }
+           
             // Check the FpTemplate 
             if ($id && !$FpTemplate) return $this->error("No FpTemplate with ID $id", 404);
 
@@ -128,7 +140,7 @@ class FpTemplateRepostory extends RepositoryEloquent implements FpTemplateInterf
     }
     public function getBackupFPTemplate($idReader, $offset)
     {
-        $FpTemplate = DB::table('fpTemplates')->select('template')->where('idReader', $idReader)->offset($offset)->first();
+        $FpTemplate = DB::table('fpTemplates')->select('template',"index")->where('idReader', $idReader)->offset($offset)->first();
         if ($FpTemplate) {
             return $FpTemplate->index."_".$FpTemplate->template;
         }
