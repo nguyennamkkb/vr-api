@@ -164,18 +164,18 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
 
             }
 
-            $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
-            $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
-            $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
-            $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
-            $myObj->id = 0;
-            $myObj->name = $user->name;
-            $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
-            $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
-            $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
-            array_push($json_string, $myObj);
-            $firstTime = null;
-            $firstTime = null;
+            // $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
+            // $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
+            // $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
+            // $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
+            // $myObj->id = 0;
+            // $myObj->name = $user->name;
+            // $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
+            // $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
+            // $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
+            // array_push($json_string, $myObj);
+            // $firstTime = null;
+            // $firstTime = null;
         }
         return  $json_string;
      
