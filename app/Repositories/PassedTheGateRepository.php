@@ -135,15 +135,28 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
         // $unit
         // dd(gettype($month));
         $json_string =  array();
-        $myObj = new stdClass();
+        
 
         $lastMonth = $now->month - 1 == 0 ? "12" : (string)$now->month - 1;
         $lastYear =  $now->month - 1 == 0 ? (string)$now->year - 1 : $year;
-        $lastDayofLastmonth = PassedTheGateRepository::lastDateOfMonth($lastMonth, $lastYear) ;
+        $lastDayofLastmonth = PassedTheGateRepository::lastDateOfMonth(intval($lastMonth), intval($lastYear)) ;
         foreach ($listUsers as  $user) {
-            
+            $myObj1 = new stdClass();
+            $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
+            $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
+            $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
+            $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
+            $myObj1->id = 0;
+            $myObj1->name = $user->name;
+            $myObj1->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)($lastDayofLastmonth);
+            $myObj1->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
+            $myObj1->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
+            array_push($json_string, $myObj1);
+            $firstTime = null;
+            $firstTime = null;
 
             for ($i = 1; $i <= $numberDay; $i++) {
+                $myObj = new stdClass();
                 $startTime = "" . $year . "-" . $month . "-" . (string)($i + 1) . " 00:00:00";
                 $endTime = "" . $year . "-" . $month . "-" . ($i + 1) . " 23:59:59";
                 $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
@@ -163,22 +176,27 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
                 // dd($firstTime);
 
             }
-
-            // $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
-            // $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
-            // $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
-            // $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
-            // $myObj->id = 0;
-            // $myObj->name = $user->name;
-            // $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
-            // $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
-            // $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
-            // array_push($json_string, $myObj);
-            // $firstTime = null;
-            // $firstTime = null;
         }
+        // $myJSON = json_encode($json_string);
+
+        // dd($json_string);
         return  $json_string;
-     
+        // DB::beginTransaction();
+        // try {
+        //     $PassedTheGate = PassedTheGate::find();
+
+        //     // Check the PassedTheGate
+        //     if (!$PassedTheGate) return $this->error("No PassedTheGate with ID $id", 404);
+
+        //     // Delete the PassedTheGate
+        //     $PassedTheGate->delete();
+
+        //     DB::commit();
+        //     return $this->success("PassedTheGate deleted", $PassedTheGate);
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return $this->error($e->getMessage(), $e->getCode());
+        // }
     }
 
     public function updatepassedthegate($request)
