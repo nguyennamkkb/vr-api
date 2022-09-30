@@ -141,18 +141,7 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
         $lastYear =  $now->month - 1 == 0 ? (string)$now->year - 1 : $year;
         $lastDayofLastmonth = PassedTheGateRepository::lastDateOfMonth($lastMonth, $lastYear) ;
         foreach ($listUsers as  $user) {
-            $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
-            $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
-            $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
-            $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
-            $myObj->id = 0;
-            $myObj->name = $user->name;
-            $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
-            $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
-            $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
-            array_push($json_string, $myObj);
-            $firstTime = null;
-            $firstTime = null;
+            
 
             for ($i = 1; $i <= $numberDay; $i++) {
                 $startTime = "" . $year . "-" . $month . "-" . (string)($i + 1) . " 00:00:00";
@@ -174,27 +163,22 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
                 // dd($firstTime);
 
             }
+
+            $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
+            $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
+            $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
+            $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
+            $myObj->id = 0;
+            $myObj->name = $user->name;
+            $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
+            $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
+            $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
+            array_push($json_string, $myObj);
+            $firstTime = null;
+            $firstTime = null;
         }
-        // $myJSON = json_encode($json_string);
-
-        // dd($json_string);
         return  $json_string;
-        // DB::beginTransaction();
-        // try {
-        //     $PassedTheGate = PassedTheGate::find();
-
-        //     // Check the PassedTheGate
-        //     if (!$PassedTheGate) return $this->error("No PassedTheGate with ID $id", 404);
-
-        //     // Delete the PassedTheGate
-        //     $PassedTheGate->delete();
-
-        //     DB::commit();
-        //     return $this->success("PassedTheGate deleted", $PassedTheGate);
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return $this->error($e->getMessage(), $e->getCode());
-        // }
+     
     }
 
     public function updatepassedthegate($request)
