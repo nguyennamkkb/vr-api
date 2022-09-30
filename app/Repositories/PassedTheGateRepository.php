@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\Eloquent\RepositoryEloquent;
 use Carbon\Carbon;
 use DateTime;
-use destroy;
 use stdClass;
 
 class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGateInterface
@@ -124,6 +123,7 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
     }
     public function seeTimeSheet()
     {
+        $month_end = new DateTime("last day of last month");
         $now = Carbon::now();
         $listUsers = DB::table('users')->select('id', 'name')->get();
 
@@ -133,43 +133,44 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
         $startTime = "";
         $endTime = "";
         // $unit
-
         // dd(gettype($month));
         $json_string =  array();
+        $myObj = new stdClass();
 
+        $lastMonth = $now->month - 1 == 0 ? "12" : (string)$now->month - 1;
+        $lastYear =  $now->month - 1 == 0 ? (string)$now->year - 1 : $year;
+        $lastDayofLastmonth = PassedTheGateRepository::lastDateOfMonth($lastMonth, $lastYear) ;
         foreach ($listUsers as  $user) {
-            for ($i = 0; $i < $numberDay; $i++) {
+            $startTime = "" . $lastYear . "-" . $lastMonth . "-" .$lastDayofLastmonth . " 00:00:00";
+            $endTime = "" . $lastYear . "-" . $lastMonth . "-" . $lastDayofLastmonth . " 23:59:59";
+            $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
+            $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
+            $myObj->id = 0;
+            $myObj->name = $user->name;
+            $myObj->date = "" . $lastYear . "-" . $lastMonth . "-" . (string)(30);
+            $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
+            $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
+            array_push($json_string, $myObj);
+            $firstTime = null;
+            $firstTime = null;
 
+            for ($i = 1; $i <= $numberDay; $i++) {
                 $startTime = "" . $year . "-" . $month . "-" . (string)($i + 1) . " 00:00:00";
                 $endTime = "" . $year . "-" . $month . "-" . ($i + 1) . " 23:59:59";
-
-                // dd($startTime);
-                //2022-06-15 00:00:00
-                //2022-06-16 00:00:00
                 $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'asc')->first();
-                $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=',$startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
-                // $firstTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=','2022-06-15 00:00:00')->where('time', '<=', '2022-06-16 00:00:00')->orderBy('time', 'asc')->first();
-                // $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=','2022-06-15 00:00:00')->where('time', '<=', '2022-06-16 00:00:00')->orderBy('time', 'desc')->first();
+                $lastTime = DB::table('passed_the_gate')->select('time')->where('iduser', $user->id)->where('time', '>=', $startTime)->where('time', '<=', $endTime)->orderBy('time', 'desc')->first();
 
-                // dd($firstTime);
-                // $str = '{"name":"'.$user->name.'","firstTime":"'.$firstTime.'","lastTime":"'.$lastTime.'"}';
-                // $firstTime   =  new DateTime($firstTime?"":$firstTime);
-                // $lastTime    =  new DateTime($lastTime?"":$lastTime);
-                // $$firstTime = $firstTime->format('Y-m-d- H-i-s');
-
-
-                $myObj = new stdClass();
                 $myObj->id = $i;
                 $myObj->name = $user->name;
-                $myObj->date = "" . $year . "-" . $month . "-" . (string)($i + 1) ;
-                $myObj->firstTime = !is_object($firstTime)?"":substr($firstTime->time,-8);
-                $myObj->lastTime =  !is_object($lastTime)?"":substr($lastTime->time,-8);
+                $myObj->date = "" . $year . "-" . $month . "-" . (string)($i + 1);
+                $myObj->firstTime = !is_object($firstTime) ? "" : substr($firstTime->time, -8);
+                $myObj->lastTime =  !is_object($lastTime) ? "" : substr($lastTime->time, -8);
                 // $myObj->type1 =  gettype($lastTime);
                 // $myObj->type2 =  gettype($lastTime);
-                 
+
                 array_push($json_string, $myObj);
-                $firstTime=null;
-                $firstTime=null;
+                $firstTime = null;
+                $firstTime = null;
                 // dd($firstTime);
 
             }
@@ -198,32 +199,30 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
 
     public function updatepassedthegate($request)
     {
-        $iduser=0;
+        $iduser = 0;
         $json_string =  array();
-        
+
         if ($request->data) {
             foreach ($request->data as $value) {
                 // dd($value['vid']);
-                $iduser =  DB::table('users')->select('id')->where('vid','like',$value['vid'])->first();
-                if ($iduser!=null) {
-                    PassedTheGateRepository::insertNew($iduser->id,$value['time']);
+                $iduser =  DB::table('users')->select('id')->where('vid', 'like', $value['vid'])->first();
+                if ($iduser != null) {
+                    PassedTheGateRepository::insertNew($iduser->id, $value['time']);
                     array_push($json_string, $iduser);
                 }
-                
             }
         }
         dd($json_string);
-      
     }
     function insertNew($vID, $time)
     {
         DB::beginTransaction();
         try {
-           
+
             $PassedTheGate = new PassedTheGate;
 
             // Check the PassedTheGate 
-            
+
 
             $PassedTheGate->idreader = -1;
             $PassedTheGate->iduser = $vID;
@@ -233,9 +232,42 @@ class PassedTheGateRepository extends RepositoryEloquent implements PassedTheGat
             $PassedTheGate->save();
 
             DB::commit();
-           
         } catch (\Exception $e) {
-           
         }
     }
+    public function leapYear($year)
+    {
+        return (($year % 4 == 0) && ($year % 100 != 0)) || ($year % 400 == 0);
+    }
+    public function lastDateOfMonth($month, $year)
+    {
+        $date = 0;
+
+
+        switch ($month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                $date = 31;
+                break;
+            case 2:
+                $date = PassedTheGateRepository::leapYear($year) ? 29 : 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                $date = 30;
+                break;
+            default:
+                $date = "";
+        }
+        return  $date;
+    }
+
+   
 }
